@@ -1,0 +1,1 @@
+from assemblyline.al.service.swiffer.swiffer import Swiffer
