@@ -1,1 +1,1 @@
-from assemblyline.al.service.swiffer.swiffer import Swiffer
+from al_services.alsvc_swiffer.swiffer import Swiffer
