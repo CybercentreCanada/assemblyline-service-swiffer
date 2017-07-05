@@ -20,7 +20,7 @@ def install(alsi):
     remote_path = 'python/pip/' + pyswf
     local_path = os.path.join('/tmp/', pyswf)
     alsi.fetch_package(remote_path, local_path)
-    alsi.runcmd('sudo pip install ' + local_path, piped_stdio=False)
+    alsi.runcmd('sudo -H pip install ' + local_path, piped_stdio=False)
 
     alsi.milestone('Completed Swiffer install.')
 
