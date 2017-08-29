@@ -50,7 +50,7 @@ class Swiffer(ServiceBase):
     SERVICE_DESCRIPTION = "This service extracts metadata and performs anomaly detection on SWF files."
     SERVICE_ENABLED = True
     SERVICE_VERSION = '1'
-    SERVICE_REVISION = ServiceBase.parse_revision('$Id: cb5f1e5c7926b0025a8a9aa84f17501788fd894a $')
+    SERVICE_REVISION = ServiceBase.parse_revision('$Id$')
     SERVICE_CPU_CORES = 0.05
     SERVICE_RAM_MB = 128
 
