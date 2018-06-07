@@ -6,7 +6,7 @@ import os
 def install(alsi):
 
     alsi.milestone('Starting Swiffer install..')
-
+    alsi.sudo_apt_install('libjpeg-dev')
     alsi.pip_install("Pillow==2.3.0")
 
     support_dir = os.path.join(alsi.alroot, 'support/swiffer')
