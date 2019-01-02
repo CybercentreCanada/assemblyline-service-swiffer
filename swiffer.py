@@ -123,7 +123,7 @@ class Swiffer(ServiceBase):
         header_subsection = ResultSection(score=0, title_text="SWF Header")
         if self.swf.header.version:
             header_subsection.add_line("Version: %d" % self.swf.header.version)
-            self.result.add_tag(tag_type=TAG_TYPE.SWF_HEADER_VERSION, value=self.swf.header.version,
+            self.result.add_tag(tag_type=TAG_TYPE.SWF_HEADER_VERSION, value=str(self.swf.header.version),
                                 weight=TAG_WEIGHT.NULL)
         header_subsection.add_line("FileLength: %d" % self.swf.header.file_length)
         if self.swf.header.frame_size.__str__():
@@ -132,11 +132,11 @@ class Swiffer(ServiceBase):
                                 weight=TAG_WEIGHT.NULL)
         if self.swf.header.frame_rate:
             header_subsection.add_line("FrameRate: %d" % self.swf.header.frame_rate)
-            self.result.add_tag(tag_type=TAG_TYPE.SWF_HEADER_FRAME_RATE, value=self.swf.header.frame_rate,
+            self.result.add_tag(tag_type=TAG_TYPE.SWF_HEADER_FRAME_RATE, value=str(self.swf.header.frame_rate),
                                 weight=TAG_WEIGHT.NULL)
         if self.swf.header.frame_count:
             header_subsection.add_line("FrameCount: %d" % self.swf.header.frame_count)
-            self.result.add_tag(tag_type=TAG_TYPE.SWF_HEADER_FRAME_COUNT, value=self.swf.header.frame_count,
+            self.result.add_tag(tag_type=TAG_TYPE.SWF_HEADER_FRAME_COUNT, value=str(self.swf.header.frame_count),
                                 weight=TAG_WEIGHT.NULL)
         self.result.add_section(header_subsection)
 
