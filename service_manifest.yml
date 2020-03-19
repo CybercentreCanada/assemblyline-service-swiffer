@@ -1,0 +1,52 @@
+name: Swiffer
+version: 1
+description: >-
+  This service extracts metadata and performs anomaly detection on SWF files.
+
+accepts: audiovisual/flash
+rejects: empty|metadata/.*
+
+stage: CORE
+category: Static Analysis
+
+file_required: true
+timeout: 60
+disable_cache: false
+
+enabled: true
+is_external: false
+licence_count: 0
+
+config:
+  RABCDASM: '/opt/al_support/swiffer/rabcdasm/rabcdasm'
+
+heuristics:
+  - description: Checks for printable character buffers larger than 512 bytes
+    filetype: "audiovisual/flash"
+    heur_id: 1
+    name: Large String Buffer
+    score: 50
+
+  - description: Checks if the SWF was compiled within the last 24 hours
+    filetype: "audiovisual/flash"
+    heur_id: 2
+    name: Recent Compilation
+    score: 100
+
+  - description: Checks if the SWF contains embedded binary data
+    filetype: "audiovisual/flash"
+    heur_id: 3
+    name: Embedded Binary Data
+    score: 50
+
+  - description: Attempts disassembly and reports errors which may be indicative of intentional obfuscation
+    filetype: "audiovisual/flash"
+    heur_id: 4
+    name: Incomplete Disassembly
+    score: 25
+
+
+docker_config:
+  image: ${REGISTRY}cccs/assemblyline-service-swiffer:latest
+  cpu_cores: 1
+  ram_mb: 256

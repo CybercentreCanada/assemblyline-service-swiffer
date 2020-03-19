@@ -3,14 +3,12 @@ import os
 import re
 import ssdeep
 from collections import defaultdict
-from textwrap import dedent
 
 from datetime import datetime, timedelta
 from subprocess import Popen, PIPE
 
-from assemblyline.al.common.heuristics import Heuristic
-from assemblyline.al.common.result import Result, ResultSection, SCORE, TAG_TYPE, TAG_WEIGHT
-from assemblyline.al.service.base import ServiceBase
+from assemblyline_v4_service.common.result import Result, ResultSection
+from assemblyline_v4_service.common.base import ServiceBase
 
 # For now, this is the set we analyze
 SWF_TAGS = {
@@ -25,41 +23,8 @@ SWF_TAGS = {
 
 # noinspection PyBroadException
 class Swiffer(ServiceBase):
-    AL_Swiffer_001 = Heuristic("AL_Swiffer_001", "Large String Buffer", "audiovisual/flash",
-                               dedent("""\
-                                      Checks for printable character buffers larger than 512 bytes.
-                                      """))
-
-    AL_Swiffer_002 = Heuristic("AL_Swiffer_002", "Recent Compilation", "audiovisual/flash",
-                               dedent("""\
-                                      Checks if the SWF was compiled within the last 24 hours.
-                                      """))
-
-    AL_Swiffer_003 = Heuristic("AL_Swiffer_003", "Embedded Binary Data", "audiovisual/flash",
-                               dedent("""\
-                                      Checks if the SWF contains embedded binary data.
-                                      """))
-    AL_Swiffer_004 = Heuristic("AL_Swiffer_004", "Incomplete Disassembly", "audiovisual/flash",
-                               dedent("""\
-                                      Attempts disassembly and reports errors which may be indicative
-                                      of intentional obfuscation.
-                                      """))
-
-    SERVICE_CATEGORY = 'Static Analysis'
-    SERVICE_ACCEPTS = 'audiovisual/flash'
-    SERVICE_DESCRIPTION = "This service extracts metadata and performs anomaly detection on SWF files."
-    SERVICE_ENABLED = True
-    SERVICE_VERSION = '1'
-    SERVICE_REVISION = ServiceBase.parse_revision('$Id$')
-    SERVICE_CPU_CORES = 0.05
-    SERVICE_RAM_MB = 128
-
-    SERVICE_DEFAULT_CONFIG = {
-        'RABCDASM': r'/opt/al/support/swiffer/rabcdasm/rabcdasm',
-    }
-
-    def __init__(self, cfg=None):
-        super(Swiffer, self).__init__(cfg)
+    def __init__(self, config=None):
+        super(Swiffer, self).__init__(config)
         self.result = None
         self.request = None
         self.tag_analyzers = {
@@ -76,7 +41,7 @@ class Swiffer(ServiceBase):
         self.binary_data = None
         self.exported_assets = None
         self.big_buffers = None
-        self.rabcdasm = self.cfg.get('RABCDASM')
+        self.rabcdasm = self.config.get('RABCDASM')
         self.has_product_info = False
         self.anti_decompilation = False
         self.recent_compile = False
