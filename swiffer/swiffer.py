@@ -6,8 +6,10 @@ from collections import defaultdict
 
 from datetime import datetime, timedelta
 from subprocess import Popen, PIPE
+from swf.movie import SWF
+from swf.consts import ProductKind, ProductEdition
 
-from assemblyline_v4_service.common.result import Result, ResultSection
+from assemblyline_v4_service.common.result import Result, ResultSection, Heuristic
 from assemblyline_v4_service.common.base import ServiceBase
 
 # For now, this is the set we analyze
@@ -26,7 +28,6 @@ class Swiffer(ServiceBase):
     def __init__(self, config=None):
         super(Swiffer, self).__init__(config)
         self.result = None
-        self.request = None
         self.tag_analyzers = {
             'DoABC': self._do_abc,
             'DefineBinaryData': self._define_binary_data,
@@ -53,26 +54,19 @@ class Swiffer(ServiceBase):
             self.rabcdasm = None
 
     def get_tool_version(self):
-        return self.SERVICE_VERSION
-
-    # noinspection PyGlobalUndefined,PyUnresolvedReferences
-    def import_service_deps(self):
-        global SWF, ProductKind, ProductEdition
-        from swf.movie import SWF
-        from swf.consts import ProductKind, ProductEdition
+        return "pyswf: 1.5.4 - rabcdasm: 1.18"
 
     def execute(self, request):
-        self.request = request
         request.result = Result()
-        self.result = self.request.result
-        file_path = self.request.download()
+        self.result = request.result
+        file_path = request.file_path
         fh = open(file_path, 'rb')
         try:
             self.swf = SWF(fh)
             if self.swf is None:
                 raise
-        except:
-            self.log.exception("Unable to parse srl %s:" % self.request.srl)
+        except Exception:
+            self.log.exception("Unable to parse file %s:" % request.sha256)
             fh.close()
             raise
         self.tag_summary = defaultdict(list)
@@ -85,117 +79,104 @@ class Swiffer(ServiceBase):
         self.recent_compile = False
         self.disasm_path = None
 
-        header_subsection = ResultSection(score=0, title_text="SWF Header")
+        header_subsection = ResultSection(title_text="SWF Header", parent=self.result)
         if self.swf.header.version:
             header_subsection.add_line("Version: %d" % self.swf.header.version)
-            self.result.add_tag(tag_type=TAG_TYPE.SWF_HEADER_VERSION, value=str(self.swf.header.version),
-                                weight=TAG_WEIGHT.NULL)
-        header_subsection.add_line("FileLength: %d" % self.swf.header.file_length)
+            header_subsection.add_tag(tag_type="file.swf.header.version", value=str(self.swf.header.version))
+        header_subsection.add_line("File length: %d" % self.swf.header.file_length)
         if self.swf.header.frame_size.__str__():
-            header_subsection.add_line("FrameSize: %s" % self.swf.header.frame_size.__str__())
-            self.result.add_tag(tag_type=TAG_TYPE.SWF_HEADER_FRAME_SIZE, value=self.swf.header.frame_size.__str__(),
-                                weight=TAG_WEIGHT.NULL)
+            header_subsection.add_line("Frame size: %s" % self.swf.header.frame_size.__str__())
+            header_subsection.add_tag(tag_type="file.swf.header.frame.size", value=self.swf.header.frame_size.__str__())
         if self.swf.header.frame_rate:
-            header_subsection.add_line("FrameRate: %d" % self.swf.header.frame_rate)
-            self.result.add_tag(tag_type=TAG_TYPE.SWF_HEADER_FRAME_RATE, value=str(self.swf.header.frame_rate),
-                                weight=TAG_WEIGHT.NULL)
+            header_subsection.add_line("Frame rate: %d" % self.swf.header.frame_rate)
+            header_subsection.add_tag(tag_type="file.swf.header.frame.rate", value=str(self.swf.header.frame_rate))
         if self.swf.header.frame_count:
-            header_subsection.add_line("FrameCount: %d" % self.swf.header.frame_count)
-            self.result.add_tag(tag_type=TAG_TYPE.SWF_HEADER_FRAME_COUNT, value=str(self.swf.header.frame_count),
-                                weight=TAG_WEIGHT.NULL)
-        self.result.add_section(header_subsection)
+            header_subsection.add_line("Frame count: %d" % self.swf.header.frame_count)
+            header_subsection.add_tag(tag_type="file.swf.header.frame.count", value=str(self.swf.header.frame_count))
 
         # Parse Tags
+        tag_subsection = ResultSection(title_text="SWF Tags", parent=self.result)
         tag_types = []
         for tag in self.swf.tags:
             self.tag_analyzers.get(SWF_TAGS.get(tag.type), self._dummy)(tag)
             tag_types.append(str(tag.type))
         tag_list = ','.join(tag_types)
         tags_ssdeep = ssdeep.hash(tag_list)
-        _, hash_one, hash_two = tags_ssdeep.split(':')
-        self.result.add_tag(tag_type=TAG_TYPE.SWF_TAGS_SSDEEP, value=hash_one,
-                            weight=TAG_WEIGHT.NULL)
-        self.result.add_tag(tag_type=TAG_TYPE.SWF_TAGS_SSDEEP, value=hash_two,
-                            weight=TAG_WEIGHT.NULL)
+        tag_subsection.add_tag(tag_type="file.swf.tags_ssdeep", value=tags_ssdeep)
+        # TODO: not sure we want to split those...
+        # _, hash_one, hash_two = tags_ssdeep.split(':')
+        # tag_subsection.add_tag(tag_type=TAG_TYPE.SWF_TAGS_SSDEEP, value=hash_one)
+        # tag_subsection.add_tag(tag_type=TAG_TYPE.SWF_TAGS_SSDEEP, value=hash_two)
+
         # Script Overview
         if len(self.symbols.keys()) > 0:
             root_symbol = 'unspecified'
             if 0 in self.symbols:
                 root_symbol = self.symbols[0]
                 self.symbols.pop(0)
-            symbol_subsection = ResultSection(score=SCORE.NULL, title_text="Symbol Summary")
-            symbol_subsection.add_line('Main Timeline: %s' % root_symbol)
+            symbol_subsection = ResultSection(title_text="Symbol Summary", parent=self.result)
+            symbol_subsection.add_line(f'Main: {root_symbol}')
             if len(self.symbols.keys()) > 0:
-                symbol_subsection.add_line('Other Symbols:')
-                for tag_id, name in self.symbols.iteritems():
-                    symbol_subsection.add_line('\tTagId: %s\tName: %s' % (tag_id, name))
-            self.result.add_section(symbol_subsection)
+                for tag_id, name in sorted([(k, v) for k, v in self.symbols.items()]):
+                    symbol_subsection.add_line(f'ID:{tag_id} - {name}')
 
         if len(self.binary_data.keys()) > 0:
-            self.result.report_heuristic(Swiffer.AL_Swiffer_003)
-            binary_subsection = ResultSection(score=SCORE.NULL, title_text="Attached Binary Data")
-            for tag_id, tag_data in self.binary_data.iteritems():
+            binary_subsection = ResultSection(title_text="Attached Binary Data", heuristic=Heuristic(3),
+                                              parent=self.result)
+            for tag_id, tag_data in self.binary_data.items():
                 tag_name = self.symbols.get(tag_id, 'unspecified')
-                binary_subsection.add_line('\tTagId: %s\tName: %s\tSize: %d' % (tag_id, tag_name, len(tag_data)))
+                binary_subsection.add_line(f'ID:{tag_id} - {tag_name}')
                 try:
                     binary_filename = hashlib.sha256(tag_data).hexdigest() + '.attached_binary'
                     binary_path = os.path.join(self.working_directory, binary_filename)
-                    with open(binary_path, 'w') as fh:
+                    with open(binary_path, 'wb') as fh:
                         fh.write(tag_data)
-                    self.request.add_extracted(binary_path,
-                                               "SWF Embedded Binary Data %d" % tag_id,
-                                               tag_name)
-                except:
+                    request.add_extracted(binary_path, f"{tag_name}_{tag_id}",
+                                          f"SWF Embedded Binary Data {str(tag_id)}")
+                except Exception:
                     self.log.exception("Error submitting embedded binary data for swf:")
 
-            self.result.add_section(binary_subsection)
-
-        tags_subsection = ResultSection(score=SCORE.INFO, title_text="Tags of Interest")
+        tags_subsection = ResultSection(title_text="Tags of Interest")
         for tag in sorted(self.tag_summary.keys()):
-            tags_subsection.add_line(tag)
+            body = []
             summaries = self.tag_summary[tag]
             for summary in summaries:
-                summary_line = '\t' + '\t'.join(summary)
-                tags_subsection.add_line(summary_line)
-            tags_subsection.add_line('')
-        if len(tags_subsection.body) > 0:
+                summary_line = '\t'.join(summary)
+                body.append(summary_line)
+            if body:
+                subtag_section = ResultSection(title_text=tag, parent=tags_subsection)
+                subtag_section.add_lines(body)
+        if len(tags_subsection.subsections) > 0:
             self.result.add_section(tags_subsection)
 
         if len(self.big_buffers) > 0:
-            self.result.report_heuristic(Swiffer.AL_Swiffer_001)
-            bbs = ResultSection(score=SCORE.HIGH, title_text="Large String Buffers")
+            bbs = ResultSection(title_text="Large String Buffers", heuristic=Heuristic(1), parent=self.result)
             for buf in self.big_buffers:
                 bbs.add_line("Found a %d byte string." % len(buf))
                 buf_filename = ""
                 try:
                     buf_filename = hashlib.sha256(buf).hexdigest() + '.stringbuf'
                     buf_path = os.path.join(self.working_directory, buf_filename)
-                    with open(buf_path, 'w') as fh:
+                    with open(buf_path, 'wb') as fh:
                         fh.write(buf)
-                    self.request.add_extracted(buf_path, "AVM2 Large String Buffer.")
-                except:
+                    request.add_extracted(buf_path, "AVM2 Large String Buffer.", buf_filename)
+                except Exception:
                     self.log.exception("Error submitting AVM2 String Buffer %s" % buf_filename)
-            self.result.add_section(bbs)
 
         if not self.has_product_info:
             self.log.debug("Missing product info.")
-            no_info = ResultSection(score=SCORE.INFO, title_text="Missing Product Information")
+            no_info = ResultSection(title_text="Missing Product Information", heuristic=Heuristic(5),
+                                    parent=self.result)
             no_info.add_line("This SWF doesn't specify information about the product that created it.")
-            self.result.add_section(no_info)
 
         if self.anti_decompilation:
-            self.result.report_heuristic(Swiffer.AL_Swiffer_004)
             self.log.debug("Anti-disassembly techniques may be present.")
-            no_dis = ResultSection(score=SCORE.LOW,title_text="Incomplete Disassembly")
+            no_dis = ResultSection(title_text="Incomplete Disassembly", heuristic=Heuristic(4), parent=self.result)
             no_dis.add_line("This SWF may contain intentional corruption or obfuscation to prevent disassembly.")
 
-            self.result.add_section(no_dis)
-
         if self.recent_compile:
-            recent_compile = ResultSection(score=SCORE.LOW, title_text="Recent Compilation")
+            recent_compile = ResultSection(title_text="Recent Compilation", heuristic=Heuristic(2), parent=self.result)
             recent_compile.add_line("This SWF was compiled within the last 24 hours.")
-            self.result.add_section(recent_compile)
-            self.result.report_heuristic(Swiffer.AL_Swiffer_002)
 
         fh.close()
 
@@ -230,7 +211,7 @@ class Swiffer(ServiceBase):
                         with open(asasm_path, 'r') as fh:
                             self.analyze_asasm(fh.read())
                 self.disasm_path = disasm_path
-        except:
+        except Exception:
             self.log.exception("Error disassembling abc file %s:" % abc_path)
 
     def _do_abc(self, tag):

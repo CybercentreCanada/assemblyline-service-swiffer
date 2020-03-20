@@ -3,7 +3,7 @@ version: 1
 description: >-
   This service extracts metadata and performs anomaly detection on SWF files.
 
-accepts: audiovisual/flash
+accepts: audiovisual/flash|archive/audiovisual/flash
 rejects: empty|metadata/.*
 
 stage: CORE
@@ -22,29 +22,34 @@ config:
 
 heuristics:
   - description: Checks for printable character buffers larger than 512 bytes
-    filetype: "audiovisual/flash"
+    filetype: "audiovisual/flash|archive/audiovisual/flash"
     heur_id: 1
     name: Large String Buffer
-    score: 50
-
-  - description: Checks if the SWF was compiled within the last 24 hours
-    filetype: "audiovisual/flash"
-    heur_id: 2
-    name: Recent Compilation
     score: 100
 
-  - description: Checks if the SWF contains embedded binary data
-    filetype: "audiovisual/flash"
-    heur_id: 3
-    name: Embedded Binary Data
+  - description: Checks if the SWF was compiled within the last 24 hours
+    filetype: "audiovisual/flash|archive/audiovisual/flash"
+    heur_id: 2
+    name: Recent Compilation
     score: 50
 
+  - description: Checks if the SWF contains embedded binary data
+    filetype: "audiovisual/flash|archive/audiovisual/flash"
+    heur_id: 3
+    name: Embedded Binary Data
+    score: 0
+
   - description: Attempts disassembly and reports errors which may be indicative of intentional obfuscation
-    filetype: "audiovisual/flash"
+    filetype: "audiovisual/flash|archive/audiovisual/flash"
     heur_id: 4
     name: Incomplete Disassembly
-    score: 25
+    score: 50
 
+  - description: The SWF file is missing the product information
+    filetype: "audiovisual/flash|archive/audiovisual/flash"
+    heur_id: 5
+    name: Missing product info
+    score: 10
 
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-swiffer:latest

@@ -7,34 +7,33 @@ USER root
 # Install APT dependancies
 RUN apt-get update && apt-get install -y \
   libjpeg-dev \
-  snapd \
   && rm -rf /var/lib/apt/lists/*
-
-RUN pip install Pillow==2.3.0 && rm -rf ~/.cache/pip
 
 ######################################################
 # Execute a builder step
 FROM base AS builder
 
-# Install build dependancies
+# Install builder dependancies
 RUN apt-get update && apt-get install -y \
-  unzip \
+  build-essential \
   && rm -rf /var/lib/apt/lists/*
 
-# Install rabcdasm
-RUN snap install dmd --classic
-RUN curl -L https://github.com/CyberShadow/RABCDAsm/archive/7818a79009fdee03f9df70bf2dfe534c6767dc60.zip -o /tmp/rabcdasm.zip
-RUN mkdir -p /opt/al_support/swiffer
-RUN unzip /tmp/rabcdasm.zip -d /tmp
-RUN mv /tmp/RABCDAsm-7818a79009fdee03f9df70bf2dfe534c6767dc60 /opt/al_support/swiffer/rabcdasm
-# TODO compile rabcdasm with DMD ... I can't make it work for some reason...
+# Set a marker to copy pip files
+RUN touch /tmp/before-pip
+
+# Install dependancies as Assemblyline
+USER assemblyline
 
 # Install pyswf
-RUN aws s3 cp s3://assemblyline-support/pyswf-master-custom-patched.tgz /tmp
-USER assemblyline
-RUN touch /tmp/before-pip
-RUN pip install --user /tmp/pyswf-master-custom-patched.tgz && rm -rf ~/.cache/pip
+RUN pip install --user https://github.com/timknip/pyswf/archive/master.zip && rm -rf ~/.cache/pip
+
+# Downgrade Pillow for compatibility reasons
+RUN pip install --user Pillow==2.3.0 && rm -rf ~/.cache/pip
+
+# Delete files that are not to be kept
 RUN find /var/lib/assemblyline/.local -type f ! -newer /tmp/before-pip -delete
+
+# Set owner to be root for COPY from builder to work properly
 USER root
 RUN chown root:root -R /var/lib/assemblyline/.local
 
@@ -42,14 +41,15 @@ RUN chown root:root -R /var/lib/assemblyline/.local
 # Restart from base
 FROM base
 
-# Copy output directories from the builder step
-COPY --from=builder /opt/al_support /opt/al_support
+# Copy pip packages from the builder step
 COPY --chown=assemblyline:assemblyline --from=builder /var/lib/assemblyline/.local /var/lib/assemblyline/.local
 
-# Get Swiffer service code
-WORKDIR /opt/al_service
-COPY . .
+# Copy service and dependancy code from source
+COPY ./remnux-rabcdasm/* /opt/al_support/swiffer/rabcdasm/
+COPY ./swiffer /opt/al_support/swiffer
+COPY service_manifest.yml /opt/al_support
 
 # Switch to assemblyline user
+WORKDIR /opt/al_service
 USER assemblyline
 
