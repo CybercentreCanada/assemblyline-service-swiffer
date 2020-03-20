@@ -46,8 +46,8 @@ COPY --chown=assemblyline:assemblyline --from=builder /var/lib/assemblyline/.loc
 
 # Copy service and dependancy code from source
 COPY ./remnux-rabcdasm/* /opt/al_support/swiffer/rabcdasm/
-COPY ./swiffer /opt/al_support/swiffer
-COPY service_manifest.yml /opt/al_support
+COPY ./swiffer /opt/al_service/swiffer
+COPY service_manifest.yml /opt/al_service
 
 # Switch to assemblyline user
 WORKDIR /opt/al_service
