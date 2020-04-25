@@ -64,9 +64,9 @@ class Swiffer(ServiceBase):
         try:
             self.swf = SWF(fh)
             if self.swf is None:
-                raise
-        except Exception:
-            self.log.exception("Unable to parse file %s:" % request.sha256)
+                raise Exception("self.swf is None")
+        except Exception as e:
+            self.log.exception(f"Unable to parse file {request.sha256}: {str(e)}")
             fh.close()
             raise
         self.tag_summary = defaultdict(list)
@@ -249,7 +249,7 @@ class Swiffer(ServiceBase):
                 # Flag recent compile time:
                 if (datetime.now() - compile_time) < timedelta(hours=24):
                     self.recent_compile = True
-            except:
+            except Exception:
                 compile_time_str = "Invalid Compile Time: %s" % repr(tag.compileTime)
         else:
             compile_time_str = 'Missing'
