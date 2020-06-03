@@ -1,5 +1,5 @@
 name: Swiffer
-version: 1
+version: $SERVICE_TAG
 description: >-
   This service extracts metadata and performs anomaly detection on SWF files.
 
@@ -52,6 +52,6 @@ heuristics:
     score: 10
 
 docker_config:
-  image: ${REGISTRY}cccs/assemblyline-service-swiffer:latest
+  image: ${REGISTRY}cccs/assemblyline-service-swiffer:$SERVICE_TAG
   cpu_cores: 1
   ram_mb: 256
