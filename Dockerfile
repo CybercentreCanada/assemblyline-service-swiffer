@@ -25,10 +25,10 @@ RUN touch /tmp/before-pip
 USER assemblyline
 
 # Install pyswf
-RUN pip install --no-cache-dir --user https://github.com/timknip/pyswf/archive/master.zip && rm -rf ~/.cache/pip
+RUN pip install --no-cache-dir --user https://github.com/cccs-rs/pyswf/archive/master.zip && rm -rf ~/.cache/pip
 
 # Downgrade Pillow for compatibility reasons
-RUN pip install --no-cache-dir --user Pillow==2.3.0 && rm -rf ~/.cache/pip
+#RUN pip install --no-cache-dir --user Pillow==2.3.0 && rm -rf ~/.cache/pip
 
 # Delete files that are not to be kept
 RUN find /var/lib/assemblyline/.local -type f ! -newer /tmp/before-pip -delete
