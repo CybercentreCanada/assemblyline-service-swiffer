@@ -6,7 +6,7 @@ description: >-
 accepts: audiovisual/flash|archive/audiovisual/flash
 rejects: empty|metadata/.*
 
-stage: CORE
+stage: EXTRACT
 category: Static Analysis
 
 file_required: true
