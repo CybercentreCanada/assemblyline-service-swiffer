@@ -24,11 +24,8 @@ RUN touch /tmp/before-pip
 # Install dependancies as Assemblyline
 USER assemblyline
 
-# Install pyswf
-RUN pip install --no-cache-dir --user https://github.com/cccs-rs/pyswf/archive/master.zip && rm -rf ~/.cache/pip
-
-# Downgrade Pillow for compatibility reasons
-#RUN pip install --no-cache-dir --user Pillow==2.3.0 && rm -rf ~/.cache/pip
+# Install dependencies for local pyswf library
+RUN pip install --no-cache-dir --user lxml>=3.3.0 Pillow>=2.3.0 pylzma>=0.4.6 six && rm -rf ~/.cache/pip
 
 # Delete files that are not to be kept
 RUN find /var/lib/assemblyline/.local -type f ! -newer /tmp/before-pip -delete
