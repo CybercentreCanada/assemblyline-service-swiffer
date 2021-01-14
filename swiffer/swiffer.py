@@ -6,8 +6,8 @@ from collections import defaultdict
 
 from datetime import datetime, timedelta
 from subprocess import Popen, PIPE
-from swf.movie import SWF
-from swf.consts import ProductKind, ProductEdition
+from .swf.movie import SWF
+from .swf.consts import ProductKind, ProductEdition
 
 from assemblyline_v4_service.common.result import Result, ResultSection, Heuristic
 from assemblyline_v4_service.common.base import ServiceBase
@@ -199,7 +199,9 @@ class Swiffer(ServiceBase):
             abc_filename = abc_hash + '.abc'
             abc_path = os.path.join(self.working_directory, abc_filename)
             disasm_path = os.path.join(self.working_directory, abc_hash)
-            with open(abc_path, 'w') as fh:
+            with open(abc_path, 'wb') as fh:
+                if isinstance(a_bytes, str):
+                    a_bytes = a_bytes.encode()
                 fh.write(a_bytes)
             rabcdasm = Popen([self.rabcdasm, abc_path], stdout=PIPE, stderr=PIPE)
             stdout, _ = rabcdasm.communicate()
