@@ -152,6 +152,8 @@ class Swiffer(ServiceBase):
         if len(self.big_buffers) > 0:
             bbs = ResultSection(title_text="Large String Buffers", heuristic=Heuristic(1), parent=self.result)
             for buf in self.big_buffers:
+                if isinstance(buf, str):
+                    buf = buf.encode()
                 bbs.add_line("Found a %d byte string." % len(buf))
                 buf_filename = ""
                 try:
