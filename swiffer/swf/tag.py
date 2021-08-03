@@ -160,7 +160,11 @@ class SWFTimelineContainer(DefinitionTag):
         self.file_length = self._get_file_length(data, pos)
         tag = None
         while type(tag) != TagEnd:
-            tag = self.parse_tag(data)
+            try:
+                tag = self.parse_tag(data)
+            except Exception as e:
+                if 'DefineBitsLossless: BIT_15' in str(e):
+                    continue
             if tag:
                 #print tag.name
                 self.tags.append(tag)
