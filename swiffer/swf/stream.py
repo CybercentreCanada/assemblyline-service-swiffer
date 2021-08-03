@@ -369,7 +369,7 @@ class SWFStream(object):
         """ Read a string """
         s = self.f.read(1)
         string = b""
-        while ord(s) > 0:
+        while s and ord(s) > 0:
             string += s
             s = self.f.read(1)
         try:
