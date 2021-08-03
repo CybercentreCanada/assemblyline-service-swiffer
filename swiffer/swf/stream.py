@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-import struct, math
+import struct, math, os
 from .data import *
 from .actions import *
 from .filters import SWFFilterFactory
@@ -472,7 +472,10 @@ class SWFStream(object):
     
     def skip_bytes(self, length):
         """ Skip over the specified number of bytes """
-        self.f.seek(self.tell() + length)
+        if self.tell() + length <= self.f.getbuffer().nbytes:
+            self.f.seek(self.tell() + length)
+        else:
+            self.f.seek(0, os.SEEK_END)
               
     def reset_bits_pending(self):
         """ Reset the bit array """
