@@ -125,14 +125,16 @@ class Swiffer(ServiceBase):
                                               parent=self.result)
             for tag_id, tag_data in self.binary_data.items():
                 tag_name = self.symbols.get(tag_id, 'unspecified')
-                binary_subsection.add_line(f'ID:{tag_id} - {tag_name}')
                 try:
                     binary_filename = hashlib.sha256(tag_data).hexdigest() + '.attached_binary'
                     binary_path = os.path.join(self.working_directory, binary_filename)
                     with open(binary_path, 'wb') as fh:
                         fh.write(tag_data)
-                    request.add_extracted(binary_path, f"{tag_name}_{tag_id}",
-                                          f"SWF Embedded Binary Data {str(tag_id)}")
+                    if request.add_extracted(binary_path, f"{tag_name}_{tag_id}",
+                                             f"SWF Embedded Binary Data {str(tag_id)}",
+                                             safelist_interface=self.api_interface):
+                        binary_subsection.add_line(f'ID:{tag_id} - {tag_name}')
+
                 except Exception:
                     self.log.exception("Error submitting embedded binary data for swf:")
 
@@ -161,7 +163,8 @@ class Swiffer(ServiceBase):
                     buf_path = os.path.join(self.working_directory, buf_filename)
                     with open(buf_path, 'wb') as fh:
                         fh.write(buf)
-                    request.add_extracted(buf_path, "AVM2 Large String Buffer.", buf_filename)
+                    request.add_extracted(buf_path, "AVM2 Large String Buffer.", buf_filename,
+                                          safelist_interface=self.api_interface)
                 except Exception:
                     self.log.exception("Error submitting AVM2 String Buffer %s" % buf_filename)
 
