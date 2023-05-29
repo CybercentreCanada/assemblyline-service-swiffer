@@ -1,16 +1,16 @@
 import hashlib
 import os
 import re
-import ssdeep
 from collections import defaultdict
-
 from datetime import datetime, timedelta
-from subprocess import Popen, PIPE
-from .swf.movie import SWF
-from .swf.consts import ProductKind, ProductEdition
+from subprocess import PIPE, Popen
 
-from assemblyline_v4_service.common.result import Result, ResultSection, Heuristic
+import ssdeep
 from assemblyline_v4_service.common.base import ServiceBase
+from assemblyline_v4_service.common.result import Heuristic, Result, ResultSection
+
+from .swf.consts import ProductEdition, ProductKind
+from .swf.movie import SWF
 
 # For now, this is the set we analyze
 SWF_TAGS = {

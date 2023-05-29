@@ -1,7 +1,9 @@
 from __future__ import absolute_import
+
+from six.moves import map, range
+
 from .utils import ColorUtils
-from six.moves import map
-from six.moves import range
+
 
 class Filter(object):
     """
@@ -9,25 +11,25 @@ class Filter(object):
     """
     def __init__(self, id):
         self._id = id
-    
+
     @property
     def id(self):
         """ Return filter ID """
         return self._id
-        
+
     def parse(self, data):
         '''
         Parses the filter
         '''
         pass
-        
+
 class FilterDropShadow(Filter):
     """
     Drop Shadow Filter
     """
     def __init__(self, id):
         super(FilterDropShadow, self).__init__(id)
-    
+
     def parse(self, data):
         self.dropShadowColor = data.readRGBA()
         self.blurX = data.readFIXED()
@@ -40,7 +42,7 @@ class FilterDropShadow(Filter):
         self.knockout = ((flags & 0x40) != 0)
         self.compositeSource = ((flags & 0x20) != 0)
         self.passes = flags & 0x1f
-    
+
     def __str__(self):
         s = "[DropShadowFilter] " + \
             "DropShadowColor: %s" % ColorUtils.to_rgb_string(self.dropShadowColor) + ", " + \
@@ -54,7 +56,7 @@ class FilterDropShadow(Filter):
             "Knockout: %d" % self.knockout + ", " + \
             "CompositeSource: %d" % self.compositeSource
         return s
-        
+
 class FilterBlur(Filter):
     """
     Blur Filter
@@ -66,14 +68,14 @@ class FilterBlur(Filter):
         self.blurX = data.readFIXED()
         self.blurY = data.readFIXED()
         self.passes = data.readUI8() >> 3
-    
+
     def __str__(self):
         s = "[FilterBlur] " + \
             "BlurX: %0.2f" % self.blurX + ", " + \
             "BlurY: %0.2f" % self.blurY + ", " + \
             "Passes: %d" % self.passes
         return s
-        
+
 class FilterGlow(Filter):
     """
     Glow Filter
@@ -91,7 +93,7 @@ class FilterGlow(Filter):
         self.knockout = ((flags & 0x40) != 0)
         self.compositeSource = ((flags & 0x20) != 0)
         self.passes = flags & 0x1f
-        
+
     def __str__(self):
         s = "[FilterGlow] " + \
             "glowColor: %s" % ColorUtils.to_rgb_string(self.glowColor) + ", " + \
@@ -102,7 +104,7 @@ class FilterGlow(Filter):
             "InnerGlow: %d" % self.innerGlow + ", " + \
             "Knockout: %d" % self.knockout
         return s
-            
+
 class FilterBevel(Filter):
     """
     Bevel Filter
@@ -124,7 +126,7 @@ class FilterBevel(Filter):
         self.compositeSource = ((flags & 0x20) != 0)
         self.onTop = ((flags & 0x10) != 0)
         self.passes = flags & 0x0f
-        
+
     def __str__(self):
         s = "[FilterBevel] " + \
             "ShadowColor: %s" % ColorUtils.to_rgb_string(self.shadowColor) + ", " + \
@@ -135,7 +137,7 @@ class FilterBevel(Filter):
             "Passes: %d" % self.passes + ", " + \
             "Knockout: %d" % self.knockout
         return s
-          
+
 class FilterGradientGlow(Filter):
     """
     Gradient Glow Filter
@@ -199,19 +201,19 @@ class FilterColorMatrix(Filter):
             self.colorMatrix.append(data.readFLOAT())
         for i in range(4, 20, 5):
             self.colorMatrix[i] /= 256.0
-            
+
     def tostring(self):
         s = "[FilterColorMatrix] " + \
             " ".join(map(str, self.colorMatrix))
         return s
-                
+
 class FilterGradientBevel(FilterGradientGlow):
     """
     Gradient Bevel Filter
     """
     def __init__(self, id):
         super(FilterGradientBevel, self).__init__(id)
-                                  
+
 class SWFFilterFactory(object):
     """
     Filter factory
@@ -229,4 +231,3 @@ class SWFFilterFactory(object):
         elif type == 7: return FilterGradientBevel(id)
         else:
             raise Exception("Unknown filter type: %d" % type)
-
