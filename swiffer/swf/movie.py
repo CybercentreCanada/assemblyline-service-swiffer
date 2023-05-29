@@ -2,11 +2,14 @@
 SWF
 """
 from __future__ import absolute_import
-from .tag import SWFTimelineContainer
-from .stream import SWFStream
-from .export import SVGExporter
-from six.moves import cStringIO
+
 from io import BytesIO
+
+from six.moves import cStringIO
+
+from .export import SVGExporter
+from .stream import SWFStream
+from .tag import SWFTimelineContainer
 
 
 class SWFHeaderException(Exception):

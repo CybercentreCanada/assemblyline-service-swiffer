@@ -1,8 +1,10 @@
 from __future__ import absolute_import
+
+from six.moves import map, range
+
 from .consts import *
 from .utils import *
-from six.moves import map
-from six.moves import range
+
 
 class _dumb_repr(object):
     def __repr__(self):
