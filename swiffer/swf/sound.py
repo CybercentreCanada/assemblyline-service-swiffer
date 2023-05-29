@@ -1,8 +1,8 @@
 from __future__ import absolute_import
-from . import consts
-from . import tag
+
 import wave
-from . import stream
+
+from . import consts, stream, tag
 
 supportedCodecs = (
     consts.AudioCodec.MP3,
@@ -29,19 +29,19 @@ def get_header(stream_or_tag):
 def reason_unsupported(stream_or_tag):
     header = get_header(stream_or_tag)
     is_stream = isinstance(stream_or_tag, list)
-    
+
     if header.soundFormat not in supportedCodecs:
         return 'codec %s (%d) not supported' % (consts.AudioCodec.tostring(header.soundFormat),
                                                 header.soundFormat)
-    
+
     if is_stream and len(stream_or_tag) == 1:
         return REASON_EMPTY
-    
+
     return REASON_OK
-        
+
 def supported(stream_or_tag):
     return reason_unsupported(stream_or_tag) is None
-    
+
 def junk(stream_or_tag):
     return reason_unsupported(stream_or_tag) == REASON_EMPTY
 
@@ -51,22 +51,22 @@ def get_wave_for_header(header, output):
     w.setnchannels(consts.AudioChannels.Channels[header.soundChannels])
     w.setsampwidth(consts.AudioSampleSize.Bits[header.soundSampleSize] / 8)
     return w
-    
+
 def write_stream_to_file(stream, output):
     header = get_header(stream)
-    
+
     w = None
     if header.soundFormat in uncompressed:
         w = get_wave_for_header(header, output)
-    
+
     for block in stream[1:]:
         block.complete_parse_with_header(header)
-        
+
         if header.soundFormat == consts.AudioCodec.MP3:
             output.write(block.mpegFrames)
         else:
             w.writeframes(block.data.read())
-    
+
     if w:
         w.close()
 

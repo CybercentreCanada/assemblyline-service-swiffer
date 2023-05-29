@@ -1,14 +1,19 @@
 from __future__ import absolute_import
+
+import datetime
+
+from six.moves import range
+
 from .consts import *
 from .data import *
-from .utils import *
 from .stream import *
-import datetime
-from six.moves import range
+from .utils import *
+
 try:
     import Image
 except ImportError:
     from PIL import Image
+
 import struct
 from io import BytesIO
 

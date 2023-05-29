@@ -1,6 +1,9 @@
 from __future__ import absolute_import
-from .consts import BitmapType
+
 import math
+
+from .consts import BitmapType
+
 
 class NumberUtils(object):
     @classmethod
@@ -9,27 +12,27 @@ class NumberUtils(object):
     @classmethod
     def round_pixels_400(cls, pixels):
         return round(pixels * 10000) / 10000
- 
+
 class ColorUtils(object):
     @classmethod
     def alpha(cls, color):
         return int(color >> 24) / 255.0
-    
+
     @classmethod
     def rgb(cls, color):
         return (color & 0xffffff)
-    
+
     @classmethod
     def to_rgb_string(cls, color):
         c = "%x" % color
         while len(c) < 6: c = "0" + c
         return "#"+c
-        
+
 class ImageUtils(object):
     @classmethod
     def get_image_size(cls, data):
         pass
-        
+
     @classmethod
     def get_image_type(cls, data):
         pos = data.tell()

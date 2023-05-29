@@ -8,7 +8,7 @@ class BitmapFormat(Enum):
     BIT_8 = 3
     BIT_15 = 4
     BIT_24 = 5
-    
+
     _mapping = {
         BIT_8: 'BIT_8',
         BIT_15: 'BIT_15',
@@ -16,16 +16,16 @@ class BitmapFormat(Enum):
     }
 
 class BitmapType(Enum):
-    JPEG = 1  
+    JPEG = 1
     GIF89A = 2
     PNG = 3
-    
+
     _mapping = {
         JPEG: 'JPEG',
         GIF89A: 'GIF89A',
         PNG: 'PNG',
     }
-    
+
     FileExtensions = {
         JPEG: '.jpeg',
         GIF89A: '.gif',
@@ -33,10 +33,10 @@ class BitmapType(Enum):
     }
 
 class GradientSpreadMode(Enum):
-    PAD = 0 
+    PAD = 0
     REFLECT = 1
     REPEAT = 2
-    
+
     _mapping = {
         PAD: 'pad',
         REFLECT: 'reflect',
@@ -46,80 +46,80 @@ class GradientSpreadMode(Enum):
 class GradientType(Enum):
     LINEAR = 1
     RADIAL = 2
-    
+
     _mapping = {
         LINEAR: 'LINEAR',
         RADIAL: 'RADIAL',
     }
-                
+
 class LineScaleMode(Enum):
     NONE = 0
-    HORIZONTAL = 1 
+    HORIZONTAL = 1
     NORMAL = 2
     VERTICAL = 3
-    
+
     _mapping = {
         NONE: 'none',
         HORIZONTAL: 'horizontal',
         NORMAL: 'normal',
         VERTICAL: 'vertical',
     }
-                        
+
 class SpreadMethod(Enum):
-    PAD = 0 
+    PAD = 0
     REFLECT = 1
     REPEAT = 2
-    
+
     _mapping = {
         PAD: 'pad',
         REFLECT: 'reflect',
         REPEAT: 'repeat',
     }
-                
+
 class InterpolationMethod(Enum):
     RGB = 0
     LINEAR_RGB = 1
-    
+
     _mapping = {
         RGB: 'RGB',
         LINEAR_RGB: 'LINEAR_RGB',
     }
-                        
+
 class LineJointStyle(Enum):
     ROUND = 0
     BEVEL = 1
     MITER = 2
-    
+
     _mapping = {
         ROUND: 'ROUND',
         BEVEL: 'BEVEL',
         MITER: 'MITER',
     }
-        
+
 class LineCapsStyle(Enum):
     ROUND = 0
     NO = 1
     SQUARE = 2
-    
+
     _mapping = {
         ROUND: 'ROUND',
         NO: 'NO',
         SQUARE: 'SQUARE',
     }
-        
+
 class TextAlign(Enum):
     LEFT = 0
     RIGHT = 1
     CENTER = 2
     JUSTIFY = 3
-    
+
     _mapping = {
         LEFT: 'left',
         RIGHT: 'right',
         CENTER: 'center',
         JUSTIFY: 'justify',
     }
-        
+
 class BlendMode(Enum):
     Normal = 0
     Normal_1 = 1
@@ -136,7 +136,7 @@ class BlendMode(Enum):
     Erase = 12
     Overlay = 13
     Hardlight = 14
-    
+
     _mapping = {
         Normal: "Normal",
         Normal_1: "Normal",
@@ -160,14 +160,14 @@ class AudioSampleRate(Enum):
     Hz11k025 = 1
     Hz22k05 = 2
     Hz44k1 = 3
-    
+
     _mapping = {
         Hz5k512: '5.512kHz',
         Hz11k025: '11.025kHz',
         Hz22k05: '22.05kHz',
         Hz44k1: '44.1kHz',
     }
-    
+
     Rates = {
         Hz5k512: 5512,
         Hz11k025: 11025,
@@ -178,12 +178,12 @@ class AudioSampleRate(Enum):
 class AudioChannels(Enum):
     Mono = 0
     Stereo = 1
-    
+
     _mapping = {
         Mono: 'Mono',
         Stereo: 'Stereo',
     }
-    
+
     Channels = {
         Mono: 1,
         Stereo: 2
@@ -192,12 +192,12 @@ class AudioChannels(Enum):
 class AudioSampleSize(Enum):
     b8 = 0
     b16 = 1
-    
+
     _mapping = {
         b8: '8-bit',
         b16: '16-bit',
     }
-    
+
     Bits = {
         b8: 8,
         b16: 16
@@ -212,7 +212,7 @@ class AudioCodec(Enum):
     Nellymoser8kHz = 5
     Nellymoser = 6
     Speex = 11
-    
+
     _mapping = {
         UncompressedNativeEndian: 'UncompressedNativeEndian',
         ADPCM: 'ADPCM',
@@ -223,7 +223,7 @@ class AudioCodec(Enum):
         Nellymoser: 'Nellymoser',
         Speex: 'Speex',
     }
-    
+
     MinimumVersions = {
         UncompressedNativeEndian: 1,
         ADPCM: 1,
@@ -234,31 +234,31 @@ class AudioCodec(Enum):
         Nellymoser: 6,
         Speex: 10,
     }
-    
+
     FileExtensions = {
         MP3: '.mp3',
-        
+
         # arbitrary container
-        UncompressedNativeEndian: '.wav',   
+        UncompressedNativeEndian: '.wav',
         UncompressedLittleEndian: '.wav',
         ADPCM: '.wav',
-        
+
         # fictitious
         Nellymoser16kHz: '.nel',
         Nellymoser8kHz: '.nel',
         Nellymoser: '.nel',
         Speex: '.spx',
     }
-    
+
     MimeTypes = {
         MP3: 'audio/mpeg',
-        UncompressedNativeEndian: 'audio/wav',   
+        UncompressedNativeEndian: 'audio/wav',
         UncompressedLittleEndian: 'audio/wav',
         ADPCM: 'audio/wav',
-        
+
         # assume ogg container?
         Speex: 'audio/ogg',
-        
+
         # punt
         Nellymoser16kHz: 'application/octet-stream',
         Nellymoser8kHz: 'application/octet-stream',
@@ -273,7 +273,7 @@ class ProductEdition(Enum):
     NotForResaleEdition = 4
     TrialEdition = 5
     NoEdition = 6
-    
+
     _mapping = {
         DeveloperEdition: 'Developer edition',
         FullCommercialEdition: 'Full commercial',
@@ -289,7 +289,7 @@ class ProductKind(Enum):
     FlexForJ2EE = 1
     FlexForDotNET = 2
     AdobeFlex = 3
-    
+
     _mapping = {
         Unknown: 'Unknown',
         FlexForJ2EE: 'Flex for J2EE',
@@ -302,14 +302,14 @@ class VideoCodec(Enum):
     ScreenVideo = 3
     VP6 = 4
     VP6Alpha = 5
-    
+
     _mapping = {
         SorensonH263: 'Sorenson H.263',
         ScreenVideo: 'Screen video',
         VP6: 'VP6',
         VP6Alpha: 'VP6 with alpha',
     }
-    
+
     MinimumVersions = {
         SorensonH263: 6,
         ScreenVideo: 7,
@@ -322,7 +322,7 @@ class MPEGVersion(Enum):
     RFU = 1
     MPEG2 = 2
     MPEG1 = 3
-    
+
     _mapping = {
         MPEG2_5: 'MPEG2.5',
         RFU: 'Reserved',
@@ -335,7 +335,7 @@ class MPEGLayer(Enum):
     Layer3 = 1
     Layer2 = 2
     Layer1 = 3
-    
+
     _mapping = {
         RFU: 'Reserved',
         Layer3: 'Layer 3',

@@ -2,23 +2,27 @@
 This module defines exporters for the SWF fileformat.
 """
 from __future__ import absolute_import
+
+import base64
+
+from lxml import etree, objectify
+from six.moves import map, range
+
+from .filters import *
 from .geom import *
 from .tag import *
-from .filters import *
-from lxml import objectify
-from lxml import etree
-import base64
-from six.moves import map
-from six.moves import range
+
 try:
     import Image
 except ImportError:
     from PIL import Image
-from io import BytesIO
-from six.moves import cStringIO
+
+import copy
 import math
 import re
-import copy
+from io import BytesIO
+
+from six.moves import cStringIO
 
 SVG_VERSION = "1.1"
 SVG_NS      = "http://www.w3.org/2000/svg"
@@ -1123,4 +1127,3 @@ def _swf_matrix_to_svg_matrix(swf_matrix=None, need_scale=False, need_translate=
     values = _swf_matrix_to_matrix(swf_matrix, need_scale, need_translate, need_rotation, unit_div)
     str_values = ",".join(map(str, values))
     return "matrix(%s)" % str_values
-
