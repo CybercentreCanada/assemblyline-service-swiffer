@@ -10,7 +10,7 @@ from assemblyline_v4_service.common.base import ServiceBase
 from assemblyline_v4_service.common.result import Heuristic, Result, ResultSection
 
 from .swf.consts import ProductEdition, ProductKind
-from .swf.movie import SWF
+from .swf.movie import SWF, SWFHeaderException
 
 # For now, this is the set we analyze
 SWF_TAGS = {
@@ -65,6 +65,11 @@ class Swiffer(ServiceBase):
             self.swf = SWF(fh)
             if self.swf is None:
                 raise Exception("self.swf is None")
+        except SWFHeaderException as e:
+            # Service given a file it can't handle
+            # Log as a warning and return an empty result
+            self.log.warning(e)
+            return
         except Exception as e:
             self.log.exception(f"Unable to parse file {request.sha256}: {str(e)}")
             fh.close()

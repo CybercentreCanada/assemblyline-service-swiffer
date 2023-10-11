@@ -15,7 +15,7 @@ class Action(object):
 
     @property
     def length(self):
-        return self._length;
+        return self._length
 
     @property
     def version(self):
@@ -29,21 +29,25 @@ class Action(object):
     def __repr__(self):
         return "[Action] Code: 0x%x, Length: %d" % (self._code, self._length)
 
+
 class ActionUnknown(Action):
     ''' Dummy class to read unknown actions '''
+
     def __init__(self, code, length):
         super(ActionUnknown, self).__init__(code, length)
 
     def parse(self, data):
         if self._length > 0:
-            #print "skipping %d bytes..." % self._length
+            # print "skipping %d bytes..." % self._length
             data.skip_bytes(self._length)
 
     def __repr__(self):
         return "[ActionUnknown] Code: 0x%x, Length: %d" % (self._code, self._length)
 
+
 class Action4(Action):
     ''' Base class for SWF 4 actions '''
+
     def __init__(self, code, length):
         super(Action4, self).__init__(code, length)
 
@@ -51,8 +55,10 @@ class Action4(Action):
     def version(self):
         return 4
 
+
 class Action5(Action):
     ''' Base class for SWF 5 actions '''
+
     def __init__(self, code, length):
         super(Action5, self).__init__(code, length)
 
@@ -60,8 +66,10 @@ class Action5(Action):
     def version(self):
         return 5
 
+
 class Action6(Action):
     ''' Base class for SWF 6 actions '''
+
     def __init__(self, code, length):
         super(Action6, self).__init__(code, length)
 
@@ -69,8 +77,10 @@ class Action6(Action):
     def version(self):
         return 6
 
+
 class Action7(Action):
     ''' Base class for SWF 7 actions '''
+
     def __init__(self, code, length):
         super(Action7, self).__init__(code, length)
 
@@ -81,8 +91,11 @@ class Action7(Action):
 # =========================================================
 # SWF 3 actions
 # =========================================================
+
+
 class ActionGetURL(Action):
     CODE = 0x83
+
     def __init__(self, code, length):
         self.urlString = None
         self.targetString = None
@@ -92,8 +105,10 @@ class ActionGetURL(Action):
         self.urlString = data.readString()
         self.targetString = data.readString()
 
+
 class ActionGotoFrame(Action):
     CODE = 0x81
+
     def __init__(self, code, length):
         self.frame = 0
         super(ActionGotoFrame, self).__init__(code, length)
@@ -101,8 +116,10 @@ class ActionGotoFrame(Action):
     def parse(self, data):
         self.frame = data.readUI16()
 
+
 class ActionGotoLabel(Action):
     CODE = 0x8c
+
     def __init__(self, code, length):
         self.label = None
         super(ActionGotoLabel, self).__init__(code, length)
@@ -110,26 +127,34 @@ class ActionGotoLabel(Action):
     def parse(self, data):
         self.label = data.readString()
 
+
 class ActionNextFrame(Action):
     CODE = 0x04
+
     def __init__(self, code, length):
         super(ActionNextFrame, self).__init__(code, length)
 
+
 class ActionPlay(Action):
     CODE = 0x06
+
     def __init__(self, code, length):
         super(ActionPlay, self).__init__(code, length)
 
     def __repr__(self):
         return "[ActionPlay] Code: 0x%x, Length: %d" % (self._code, self._length)
 
+
 class ActionPreviousFrame(Action):
     CODE = 0x05
+
     def __init__(self, code, length):
         super(ActionPreviousFrame, self).__init__(code, length)
 
+
 class ActionSetTarget(Action):
     CODE = 0x8b
+
     def __init__(self, code, length):
         self.targetName = None
         super(ActionSetTarget, self).__init__(code, length)
@@ -137,26 +162,34 @@ class ActionSetTarget(Action):
     def parse(self, data):
         self.targetName = data.readString()
 
+
 class ActionStop(Action):
     CODE = 0x07
+
     def __init__(self, code, length):
         super(ActionStop, self).__init__(code, length)
 
     def __repr__(self):
         return "[ActionStop] Code: 0x%x, Length: %d" % (self._code, self._length)
 
+
 class ActionStopSounds(Action):
     CODE = 0x09
+
     def __init__(self, code, length):
         super(ActionStopSounds, self).__init__(code, length)
 
+
 class ActionToggleQuality(Action):
     CODE = 0x08
+
     def __init__(self, code, length):
         super(ActionToggleQuality, self).__init__(code, length)
 
+
 class ActionWaitForFrame(Action):
     CODE = 0x8a
+
     def __init__(self, code, length):
         self.frame = 0
         self.skipCount = 0
@@ -169,22 +202,29 @@ class ActionWaitForFrame(Action):
 # =========================================================
 # SWF 4 actions
 # =========================================================
+
+
 class ActionAdd(Action4):
     CODE = 0x0a
+
     def __init__(self, code, length):
         super(ActionAdd, self).__init__(code, length)
 
+
 class ActionAnd(Action4):
     CODE = 0x10
+
     def __init__(self, code, length):
         super(ActionAnd, self).__init__(code, length)
 
 # urgh! some 100 to go...
 
+
 ActionTable = {}
 for name, value in six.iteritems(dict(locals())):
     if type(value) == type and issubclass(value, Action) and hasattr(value, 'CODE'):
         ActionTable[value.CODE] = value
+
 
 class SWFActionFactory(object):
     @classmethod
