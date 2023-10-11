@@ -4,6 +4,7 @@ class Enum(object):
     def tostring(cls, type):
         return cls._mapping.get(type, 'unknown')
 
+
 class BitmapFormat(Enum):
     BIT_8 = 3
     BIT_15 = 4
@@ -14,6 +15,7 @@ class BitmapFormat(Enum):
         BIT_15: 'BIT_15',
         BIT_24: 'BIT_24',
     }
+
 
 class BitmapType(Enum):
     JPEG = 1
@@ -32,6 +34,7 @@ class BitmapType(Enum):
         PNG: '.png'
     }
 
+
 class GradientSpreadMode(Enum):
     PAD = 0
     REFLECT = 1
@@ -43,6 +46,7 @@ class GradientSpreadMode(Enum):
         REPEAT: 'repeat',
     }
 
+
 class GradientType(Enum):
     LINEAR = 1
     RADIAL = 2
@@ -51,6 +55,7 @@ class GradientType(Enum):
         LINEAR: 'LINEAR',
         RADIAL: 'RADIAL',
     }
+
 
 class LineScaleMode(Enum):
     NONE = 0
@@ -65,6 +70,7 @@ class LineScaleMode(Enum):
         VERTICAL: 'vertical',
     }
 
+
 class SpreadMethod(Enum):
     PAD = 0
     REFLECT = 1
@@ -76,6 +82,7 @@ class SpreadMethod(Enum):
         REPEAT: 'repeat',
     }
 
+
 class InterpolationMethod(Enum):
     RGB = 0
     LINEAR_RGB = 1
@@ -84,6 +91,7 @@ class InterpolationMethod(Enum):
         RGB: 'RGB',
         LINEAR_RGB: 'LINEAR_RGB',
     }
+
 
 class LineJointStyle(Enum):
     ROUND = 0
@@ -96,6 +104,7 @@ class LineJointStyle(Enum):
         MITER: 'MITER',
     }
 
+
 class LineCapsStyle(Enum):
     ROUND = 0
     NO = 1
@@ -106,6 +115,7 @@ class LineCapsStyle(Enum):
         NO: 'NO',
         SQUARE: 'SQUARE',
     }
+
 
 class TextAlign(Enum):
     LEFT = 0
@@ -119,6 +129,7 @@ class TextAlign(Enum):
         CENTER: 'center',
         JUSTIFY: 'justify',
     }
+
 
 class BlendMode(Enum):
     Normal = 0
@@ -155,6 +166,7 @@ class BlendMode(Enum):
         Hardlight: "Hardlight",
     }
 
+
 class AudioSampleRate(Enum):
     Hz5k512 = 0
     Hz11k025 = 1
@@ -175,6 +187,7 @@ class AudioSampleRate(Enum):
         Hz44k1: 44100,
     }
 
+
 class AudioChannels(Enum):
     Mono = 0
     Stereo = 1
@@ -189,6 +202,7 @@ class AudioChannels(Enum):
         Stereo: 2
     }
 
+
 class AudioSampleSize(Enum):
     b8 = 0
     b16 = 1
@@ -202,6 +216,7 @@ class AudioSampleSize(Enum):
         b8: 8,
         b16: 16
     }
+
 
 class AudioCodec(Enum):
     UncompressedNativeEndian = 0
@@ -265,6 +280,7 @@ class AudioCodec(Enum):
         Nellymoser: 'application/octet-stream',
     }
 
+
 class ProductEdition(Enum):
     DeveloperEdition = 0
     FullCommercialEdition = 1
@@ -284,6 +300,7 @@ class ProductEdition(Enum):
         NoEdition: 'None',
     }
 
+
 class ProductKind(Enum):
     Unknown = 0
     FlexForJ2EE = 1
@@ -296,6 +313,7 @@ class ProductKind(Enum):
         FlexForDotNET: 'Flex for .NET',
         AdobeFlex: 'Adobe Flex',
     }
+
 
 class VideoCodec(Enum):
     SorensonH263 = 2
@@ -317,6 +335,7 @@ class VideoCodec(Enum):
         VP6Alpha: 8,
     }
 
+
 class MPEGVersion(Enum):
     MPEG2_5 = 0
     RFU = 1
@@ -329,6 +348,7 @@ class MPEGVersion(Enum):
         MPEG2: 'MPEG2',
         MPEG1: 'MPEG1',
     }
+
 
 class MPEGLayer(Enum):
     RFU = 0

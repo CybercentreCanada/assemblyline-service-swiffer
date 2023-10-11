@@ -22,66 +22,127 @@ class TagFactory(object):
     @classmethod
     def create(cls, type):
         """ Return the created tag by specifying an integer """
-        if type == 0: return TagEnd()
-        elif type == 1: return TagShowFrame()
-        elif type == 2: return TagDefineShape()
-        elif type == 4: return TagPlaceObject()
-        elif type == 5: return TagRemoveObject()
-        elif type == 6: return TagDefineBits()
-        elif type == 7: return TagDefineButton()
-        elif type == 8: return TagJPEGTables()
-        elif type == 9: return TagSetBackgroundColor()
-        elif type == 10: return TagDefineFont()
-        elif type == 11: return TagDefineText()
-        elif type == 12: return TagDoAction()
-        elif type == 13: return TagDefineFontInfo()
-        elif type == 14: return TagDefineSound()
-        elif type == 15: return TagStartSound()
-        elif type == 17: return TagDefineButtonSound()
-        elif type == 18: return TagSoundStreamHead()
-        elif type == 19: return TagSoundStreamBlock()
-        elif type == 20: return TagDefineBitsLossless()
-        elif type == 21: return TagDefineBitsJPEG2()
-        elif type == 22: return TagDefineShape2()
-        elif type == 24: return TagProtect()
-        elif type == 26: return TagPlaceObject2()
-        elif type == 28: return TagRemoveObject2()
-        elif type == 32: return TagDefineShape3()
-        elif type == 33: return TagDefineText2()
-        elif type == 34: return TagDefineButton2()
-        elif type == 35: return TagDefineBitsJPEG3()
-        elif type == 36: return TagDefineBitsLossless2()
-        elif type == 37: return TagDefineEditText()
-        elif type == 39: return TagDefineSprite()
-        elif type == 41: return TagProductInfo()
-        elif type == 43: return TagFrameLabel()
-        elif type == 45: return TagSoundStreamHead2()
-        elif type == 46: return TagDefineMorphShape()
-        elif type == 48: return TagDefineFont2()
-        elif type == 56: return TagExportAssets()
-        elif type == 58: return TagEnableDebugger()
-        elif type == 59: return TagDoInitAction()
-        elif type == 60: return TagDefineVideoStream()
-        elif type == 61: return TagVideoFrame()
-        elif type == 63: return TagDebugID()
-        elif type == 64: return TagEnableDebugger2()
-        elif type == 65: return TagScriptLimits()
-        elif type == 69: return TagFileAttributes()
-        elif type == 70: return TagPlaceObject3()
-        elif type == 73: return TagDefineFontAlignZones()
-        elif type == 74: return TagCSMTextSettings()
-        elif type == 75: return TagDefineFont3()
-        elif type == 76: return TagSymbolClass()
-        elif type == 77: return TagMetadata()
-        elif type == 78: return TagDefineScalingGrid()
-        elif type == 82: return TagDoABC()
-        elif type == 83: return TagDefineShape4()
-        elif type == 84: return TagDefineMorphShape2()
-        elif type == 86: return TagDefineSceneAndFrameLabelData()
-        elif type == 87: return TagDefineBinaryData()
-        elif type == 88: return TagDefineFontName()
-        elif type == 89: return TagStartSound2()
-        else: return None
+        if type == 0:
+            return TagEnd()
+        elif type == 1:
+            return TagShowFrame()
+        elif type == 2:
+            return TagDefineShape()
+        elif type == 4:
+            return TagPlaceObject()
+        elif type == 5:
+            return TagRemoveObject()
+        elif type == 6:
+            return TagDefineBits()
+        elif type == 7:
+            return TagDefineButton()
+        elif type == 8:
+            return TagJPEGTables()
+        elif type == 9:
+            return TagSetBackgroundColor()
+        elif type == 10:
+            return TagDefineFont()
+        elif type == 11:
+            return TagDefineText()
+        elif type == 12:
+            return TagDoAction()
+        elif type == 13:
+            return TagDefineFontInfo()
+        elif type == 14:
+            return TagDefineSound()
+        elif type == 15:
+            return TagStartSound()
+        elif type == 17:
+            return TagDefineButtonSound()
+        elif type == 18:
+            return TagSoundStreamHead()
+        elif type == 19:
+            return TagSoundStreamBlock()
+        elif type == 20:
+            return TagDefineBitsLossless()
+        elif type == 21:
+            return TagDefineBitsJPEG2()
+        elif type == 22:
+            return TagDefineShape2()
+        elif type == 24:
+            return TagProtect()
+        elif type == 26:
+            return TagPlaceObject2()
+        elif type == 28:
+            return TagRemoveObject2()
+        elif type == 32:
+            return TagDefineShape3()
+        elif type == 33:
+            return TagDefineText2()
+        elif type == 34:
+            return TagDefineButton2()
+        elif type == 35:
+            return TagDefineBitsJPEG3()
+        elif type == 36:
+            return TagDefineBitsLossless2()
+        elif type == 37:
+            return TagDefineEditText()
+        elif type == 39:
+            return TagDefineSprite()
+        elif type == 41:
+            return TagProductInfo()
+        elif type == 43:
+            return TagFrameLabel()
+        elif type == 45:
+            return TagSoundStreamHead2()
+        elif type == 46:
+            return TagDefineMorphShape()
+        elif type == 48:
+            return TagDefineFont2()
+        elif type == 56:
+            return TagExportAssets()
+        elif type == 58:
+            return TagEnableDebugger()
+        elif type == 59:
+            return TagDoInitAction()
+        elif type == 60:
+            return TagDefineVideoStream()
+        elif type == 61:
+            return TagVideoFrame()
+        elif type == 63:
+            return TagDebugID()
+        elif type == 64:
+            return TagEnableDebugger2()
+        elif type == 65:
+            return TagScriptLimits()
+        elif type == 69:
+            return TagFileAttributes()
+        elif type == 70:
+            return TagPlaceObject3()
+        elif type == 73:
+            return TagDefineFontAlignZones()
+        elif type == 74:
+            return TagCSMTextSettings()
+        elif type == 75:
+            return TagDefineFont3()
+        elif type == 76:
+            return TagSymbolClass()
+        elif type == 77:
+            return TagMetadata()
+        elif type == 78:
+            return TagDefineScalingGrid()
+        elif type == 82:
+            return TagDoABC()
+        elif type == 83:
+            return TagDefineShape4()
+        elif type == 84:
+            return TagDefineMorphShape2()
+        elif type == 86:
+            return TagDefineSceneAndFrameLabelData()
+        elif type == 87:
+            return TagDefineBinaryData()
+        elif type == 88:
+            return TagDefineFontName()
+        elif type == 89:
+            return TagStartSound2()
+        else:
+            return None
+
 
 class Tag(object):
     def __init__(self):
@@ -111,6 +172,7 @@ class Tag(object):
     def __str__(self):
         return "[%02d:%s]" % (self.type, self.name)
 
+
 class DefinitionTag(Tag):
 
     def __init__(self):
@@ -135,8 +197,10 @@ class DefinitionTag(Tag):
         s.add(self.characterId)
         return s
 
+
 class DisplayListTag(Tag):
     characterId = -1
+
     def __init__(self):
         super(DisplayListTag, self).__init__()
 
@@ -147,6 +211,7 @@ class DisplayListTag(Tag):
         s = super(DisplayListTag, self).get_dependencies()
         s.add(self.characterId)
         return s
+
 
 class SWFTimelineContainer(DefinitionTag):
     def __init__(self):
@@ -167,28 +232,28 @@ class SWFTimelineContainer(DefinitionTag):
         while type(tag) != TagEnd:
             tag = self.parse_tag(data)
             if tag:
-                #print tag.name
+                # print tag.name
                 self.tags.append(tag)
 
     def parse_tag(self, data):
         pos = data.tell()
         eof = (pos > self.file_length)
         if eof:
-            #print "WARNING: end of file encountered, no end tag."
+            # print "WARNING: end of file encountered, no end tag."
             return TagEnd()
         raw_tag = data.readraw_tag()
         tag_type = raw_tag.header.type
         tag = TagFactory.create(tag_type)
         if tag is not None:
-            #print tag.name
+            # print tag.name
             data.seek(raw_tag.pos_content)
             data.reset_bits_pending()
             tag.parse(data, raw_tag.header.content_length, tag.version)
-            #except:
+            # except:
             #    print "=> tag_error", tag.name
             data.seek(pos + raw_tag.header.tag_length)
         else:
-            #print "[WARNING] unhandled tag %s" % (hex(tag_type))
+            # print "[WARNING] unhandled tag %s" % (hex(tag_type))
             data.skip_bytes(raw_tag.header.tag_length)
         data.seek(pos + raw_tag.header.tag_length)
         return tag
@@ -199,7 +264,7 @@ class SWFTimelineContainer(DefinitionTag):
         data.f.seek(pos)
         return length
 
-    def all_tags_of_type(self, type_or_types, recurse_into_sprites = True):
+    def all_tags_of_type(self, type_or_types, recurse_into_sprites=True):
         """
         Generator for all tags of the given type_or_types.
 
@@ -220,11 +285,11 @@ class SWFTimelineContainer(DefinitionTag):
         Return a dictionary of characterIds to their defining tags.
         """
         d = {}
-        for t in self.all_tags_of_type(DefinitionTag, recurse_into_sprites = False):
+        for t in self.all_tags_of_type(DefinitionTag, recurse_into_sprites=False):
             if t.characterId in d:
-                #print 'redefinition of characterId %d:' % (t.characterId)
-                #print '  was:', d[t.characterId]
-                #print 'redef:', t
+                # print 'redefinition of characterId %d:' % (t.characterId)
+                # print '  was:', d[t.characterId]
+                # print 'redef:', t
                 raise ValueError('illegal redefinition of character')
             d[t.characterId] = t
         return d
@@ -244,7 +309,7 @@ class SWFTimelineContainer(DefinitionTag):
         for tag in self.all_tags_of_type((TagSoundStreamHead, TagSoundStreamBlock)):
             if isinstance(tag, TagSoundStreamHead):
                 # we have a new stream
-                current_stream = [ tag ]
+                current_stream = [tag]
                 rc.append(current_stream)
             if isinstance(tag, TagSoundStreamBlock):
                 # we have a frame for the current stream
@@ -265,7 +330,7 @@ class SWFTimelineContainer(DefinitionTag):
 
         # scan first for all streams
         for t in self.all_tags_of_type(TagDefineVideoStream):
-            stream = [ t ]
+            stream = [t]
             streams_by_id[t.characterId] = stream
             rc.append(stream)
 
@@ -277,6 +342,7 @@ class SWFTimelineContainer(DefinitionTag):
 
         return rc
 
+
 class TagEnd(Tag):
     """
     The End tag marks the end of a file. This must always be the last tag in a file.
@@ -284,6 +350,7 @@ class TagEnd(Tag):
     The minimum file format version is SWF 1.
     """
     TYPE = 0
+
     def __init__(self):
         super(TagEnd, self).__init__()
 
@@ -299,6 +366,7 @@ class TagEnd(Tag):
     def __str__(self):
         return "[%02d:%s]" % (self.type, self.name)
 
+
 class TagShowFrame(Tag):
     """
     The ShowFrame tag instructs Flash Player to display the contents of the
@@ -306,6 +374,7 @@ class TagShowFrame(Tag):
     The minimum file format version is SWF 1.
     """
     TYPE = 1
+
     def __init__(self):
         super(TagShowFrame, self).__init__()
 
@@ -319,6 +388,7 @@ class TagShowFrame(Tag):
 
     def __str__(self):
         return "[%02d:%s]" % (self.type, self.name)
+
 
 class TagDefineShape(DefinitionTag):
     """
@@ -369,11 +439,12 @@ class TagDefineShape(DefinitionTag):
         return s
 
     def __str__(self):
-        s = super(TagDefineShape, self).__str__( ) + " " + \
+        s = super(TagDefineShape, self).__str__() + " " + \
             "ID: %d" % self.characterId + ", " + \
             "Bounds: " + self._shape_bounds.__str__()
         #s += "\n%s" % self._shapes.__str__()
         return s
+
 
 class TagPlaceObject(DisplayListTag):
     """
@@ -422,10 +493,10 @@ class TagPlaceObject(DisplayListTag):
         """ Parses this tag """
         pos = data.tell()
         self.characterId = data.readUI16()
-        self.depth = data.readUI16();
-        self.matrix = data.readMATRIX();
-        self.hasCharacter = True;
-        self.hasMatrix = True;
+        self.depth = data.readUI16()
+        self.matrix = data.readMATRIX()
+        self.hasCharacter = True
+        self.hasMatrix = True
         if data.tell() - pos < length:
             colorTransform = data.readCXFORM()
             self.hasColorTransform = True
@@ -454,7 +525,7 @@ class TagPlaceObject(DisplayListTag):
             "Depth: %d, " % self.depth + \
             "CharacterID: %d" % self.characterId
         if self.hasName:
-            s+= ", InstanceName: %s" % self.instanceName
+            s += ", InstanceName: %s" % self.instanceName
         if self.hasMatrix:
             s += ", Matrix: %s" % self.matrix.__str__()
         if self.hasClipDepth:
@@ -467,6 +538,7 @@ class TagPlaceObject(DisplayListTag):
             s += ", Blendmode: %d" % self.blendMode
         return s
 
+
 class TagRemoveObject(DisplayListTag):
     """
     The RemoveObject tag removes the specified character (at the specified depth)
@@ -475,6 +547,7 @@ class TagRemoveObject(DisplayListTag):
     """
     TYPE = 5
     depth = 0
+
     def __init__(self):
         super(TagRemoveObject, self).__init__()
 
@@ -490,6 +563,7 @@ class TagRemoveObject(DisplayListTag):
         """ Parses this tag """
         self.characterId = data.readUI16()
         self.depth = data.readUI16()
+
 
 class TagDefineBits(DefinitionTag):
     """
@@ -507,6 +581,7 @@ class TagDefineBits(DefinitionTag):
     """
     TYPE = 6
     bitmapData = None
+
     def __init__(self):
         self.bitmapData = BytesIO()
         self.bitmapType = BitmapType.JPEG
@@ -526,6 +601,7 @@ class TagDefineBits(DefinitionTag):
         if length > 2:
             self.bitmapData.write(data.f.read(length - 2))
             self.bitmapData.seek(0)
+
 
 class TagJPEGTables(DefinitionTag):
     """
@@ -565,6 +641,7 @@ class TagJPEGTables(DefinitionTag):
         s += " Length: %d" % self.length
         return s
 
+
 class TagSetBackgroundColor(Tag):
     """
     The SetBackgroundColor tag sets the background color of the display.
@@ -572,6 +649,7 @@ class TagSetBackgroundColor(Tag):
     """
     TYPE = 9
     color = 0
+
     def __init__(self):
         super(TagSetBackgroundColor, self).__init__()
 
@@ -591,6 +669,7 @@ class TagSetBackgroundColor(Tag):
         s += " Color: " + ColorUtils.to_rgb_string(self.color)
         return s
 
+
 class TagDefineFont(DefinitionTag):
     """
     The DefineFont tag defines the shape outlines of each glyph used in a
@@ -600,9 +679,10 @@ class TagDefineFont(DefinitionTag):
     the DefineFont2 tag.
     The minimum file format version is SWF 1.
     """
-    TYPE= 10
+    TYPE = 10
     offsetTable = []
     glyphShapeTable = []
+
     def __init__(self):
         super(TagDefineFont, self).__init__()
 
@@ -643,6 +723,7 @@ class TagDefineFont(DefinitionTag):
 
         for i in range(numGlyphs):
             self.glyphShapeTable.append(data.readSHAPE(self.unitDivisor))
+
 
 class TagDefineText(DefinitionTag):
     """
@@ -698,6 +779,7 @@ class TagDefineText(DefinitionTag):
             self._records.append(record)
             record = data.readTEXTRECORD(glyphBits, advanceBits, record, self.level)
 
+
 class TagDoAction(Tag):
     """
     DoAction instructs Flash Player to perform a list of actions when the
@@ -707,6 +789,7 @@ class TagDoAction(Tag):
     the contents of the DoAction tag will be ignored.
     """
     TYPE = 12
+
     def __init__(self):
         self._actions = []
         super(TagDoAction, self).__init__()
@@ -737,6 +820,7 @@ class TagDoAction(Tag):
     def parse(self, data, length, version=1):
         self._actions = data.readACTIONRECORDs()
 
+
 class TagDefineFontInfo(Tag):
     """
     The DefineFontInfo tag defines a mapping from a glyph font (defined with DefineFont) to a
@@ -751,6 +835,7 @@ class TagDefineFontInfo(Tag):
     fall back to glyph text.
     """
     TYPE = 13
+
     def __init__(self):
         super(TagDefineFontInfo, self).__init__()
 
@@ -808,7 +893,7 @@ class TagDefineFontInfo(Tag):
 
         self.smallText = ((flags & 0x20) != 0)
         self.shiftJIS = ((flags & 0x10) != 0)
-        self.ansi  = ((flags & 0x08) != 0)
+        self.ansi = ((flags & 0x08) != 0)
         self.italic = ((flags & 0x04) != 0)
         self.bold = ((flags & 0x02) != 0)
         self.wideCodes = ((flags & 0x01) != 0)
@@ -820,6 +905,7 @@ class TagDefineFontInfo(Tag):
 
         for i in range(0, numGlyphs):
             self.codeTable.append(data.readUI16() if self.wideCodes else data.readUI8())
+
 
 class TagDefineBitsLossless(DefinitionTag):
     """
@@ -841,6 +927,7 @@ class TagDefineBitsLossless(DefinitionTag):
     bitmap_color_size = 0
     zlib_bitmap_data = None
     padded_width = 0
+
     def __init__(self):
         super(TagDefineBitsLossless, self).__init__()
 
@@ -904,7 +991,7 @@ class TagDefineBitsLossless(DefinitionTag):
             s = BytesIO()
             for i in range(0, t):
                 if not is_lossless2:
-                    temp.read(1) # reserved, always 0
+                    temp.read(1)  # reserved, always 0
                 a = ord(temp.read(1)) if is_lossless2 else 0xff
                 r = ord(temp.read(1))
                 g = ord(temp.read(1))
@@ -913,7 +1000,8 @@ class TagDefineBitsLossless(DefinitionTag):
             self.image_buffer = s.getvalue()
             im = Image.frombytes("RGBA", (self.bitmap_width, self.bitmap_height), self.image_buffer)
         else:
-            raise Exception("unhandled bitmap format! %s %d" % (BitmapFormat.tobytes(self.bitmap_format), self.bitmap_format))
+            raise Exception("unhandled bitmap format! %s %d" %
+                            (BitmapFormat.tobytes(self.bitmap_format), self.bitmap_format))
 
         if not im is None:
             im.save(self.bitmapData, "PNG")
@@ -927,6 +1015,7 @@ class TagDefineBitsLossless(DefinitionTag):
     @property
     def type(self):
         return TagDefineBitsLossless.TYPE
+
 
 class TagDefineBitsJPEG2(TagDefineBits):
     """
@@ -975,6 +1064,7 @@ class TagDefineBitsJPEG2(TagDefineBits):
         super(TagDefineBitsJPEG2, self).parse(data, length, version)
         self.bitmapType = ImageUtils.get_image_type(self.bitmapData)
 
+
 class TagDefineShape2(TagDefineShape):
     """
     DefineShape2 extends the capabilities of DefineShape with the ability
@@ -1002,6 +1092,7 @@ class TagDefineShape2(TagDefineShape):
     @property
     def version(self):
         return 2
+
 
 class TagPlaceObject2(TagPlaceObject):
     """
@@ -1065,6 +1156,7 @@ class TagPlaceObject2(TagPlaceObject):
       one or more event handlers to be invoked when certain events occur.
     """
     TYPE = 26
+
     def __init__(self):
         super(TagPlaceObject2, self).__init__()
 
@@ -1092,7 +1184,7 @@ class TagPlaceObject2(TagPlaceObject):
         if self.hasClipDepth:
             self.clipDepth = data.readUI16()
         if self.hasClipActions:
-            self.clipActions = data.readCLIPACTIONS(version);
+            self.clipActions = data.readCLIPACTIONS(version)
             #raise Exception("PlaceObject2: ClipActions not yet implemented!")
 
     @property
@@ -1110,6 +1202,7 @@ class TagPlaceObject2(TagPlaceObject):
     @property
     def version(self):
         return 3
+
 
 class TagRemoveObject2(TagRemoveObject):
     """
@@ -1141,6 +1234,7 @@ class TagRemoveObject2(TagRemoveObject):
     def parse(self, data, length, version=1):
         self.depth = data.readUI16()
 
+
 class TagDefineShape3(TagDefineShape2):
     """
     DefineShape3 extends the capabilities of DefineShape2 by extending
@@ -1148,6 +1242,7 @@ class TagDefineShape3(TagDefineShape2):
     The minimum file format version is SWF 3.
     """
     TYPE = 32
+
     def __init__(self):
         super(TagDefineShape3, self).__init__()
 
@@ -1167,6 +1262,7 @@ class TagDefineShape3(TagDefineShape2):
     def version(self):
         return 3
 
+
 class TagDefineText2(TagDefineText):
     """
     The DefineText tag defines a block of static text. It describes the font,
@@ -1174,6 +1270,7 @@ class TagDefineText2(TagDefineText):
     The minimum file format version is SWF 3.
     """
     TYPE = 33
+
     def __init__(self):
         super(TagDefineText2, self).__init__()
 
@@ -1192,6 +1289,7 @@ class TagDefineText2(TagDefineText):
     @property
     def version(self):
         return 3
+
 
 class TagDefineBitsJPEG3(TagDefineBitsJPEG2):
     """
@@ -1218,6 +1316,7 @@ class TagDefineBitsJPEG3(TagDefineBitsJPEG2):
     format version for embedding PNG of GIF89a data is SWF 8.
     """
     TYPE = 35
+
     def __init__(self):
         self.bitmapAlphaData = BytesIO()
         super(TagDefineBitsJPEG3, self).__init__()
@@ -1258,6 +1357,7 @@ class TagDefineBitsJPEG3(TagDefineBitsJPEG2):
             temp.seek(0)
             self.bitmapAlphaData = temp
 
+
 class TagDefineBitsLossless2(TagDefineBitsLossless):
     """
     DefineBitsLossless2 extends DefineBitsLossless with support for
@@ -1268,6 +1368,7 @@ class TagDefineBitsLossless2(TagDefineBitsLossless):
     The minimum file format version for this tag is SWF 3.
     """
     TYPE = 36
+
     def __init__(self):
         super(TagDefineBitsLossless2, self).__init__()
 
@@ -1287,6 +1388,7 @@ class TagDefineBitsLossless2(TagDefineBitsLossless):
     def version(self):
         return 3
 
+
 class TagDefineSprite(SWFTimelineContainer):
     """
     The DefineSprite tag defines a sprite character. It consists of
@@ -1302,6 +1404,7 @@ class TagDefineSprite(SWFTimelineContainer):
     """
     TYPE = 39
     frameCount = 0
+
     def __init__(self):
         super(TagDefineSprite, self).__init__()
 
@@ -1328,6 +1431,7 @@ class TagDefineSprite(SWFTimelineContainer):
             "ID: %d" % self.characterId
         return s
 
+
 class TagFrameLabel(Tag):
     """
     The FrameLabel tag gives the specified Name to the current frame.
@@ -1337,6 +1441,7 @@ class TagFrameLabel(Tag):
     TYPE = 43
     frameName = ""
     namedAnchorFlag = False
+
     def __init__(self):
         super(TagFrameLabel, self).__init__()
 
@@ -1360,8 +1465,9 @@ class TagFrameLabel(Tag):
         start = data.tell()
         self.frameName = data.readString()
         if (data.tell() - start) < length:
-            data.readUI8() # Named anchor flag, always 1
+            data.readUI8()  # Named anchor flag, always 1
             self.namedAnchorFlag = True
+
 
 class TagDefineMorphShape(DefinitionTag):
     """
@@ -1371,6 +1477,7 @@ class TagDefineMorphShape(DefinitionTag):
     The minimum file format version is SWF 3.
     """
     TYPE = 46
+
     def __init__(self):
         self._morphFillStyles = []
         self._morphLineStyles = []
@@ -1411,12 +1518,14 @@ class TagDefineMorphShape(DefinitionTag):
         offset = data.readUI32()
 
         self._morphFillStyles = data.readMORPHFILLSTYLEARRAY()
-        self._morphLineStyles = data.readMORPHLINESTYLEARRAY(version = 1)
-        self.startEdges = data.readSHAPE();
-        self.endEdges = data.readSHAPE();
+        self._morphLineStyles = data.readMORPHLINESTYLEARRAY(version=1)
+        self.startEdges = data.readSHAPE()
+        self.endEdges = data.readSHAPE()
+
 
 class TagDefineFont2(TagDefineFont):
-    TYPE= 48
+    TYPE = 48
+
     def __init__(self):
         self.glyphShapeTable = []
         super(TagDefineFont2, self).__init__()
@@ -1498,6 +1607,7 @@ class TagDefineFont2(TagDefineFont):
             for i in range(0, kerningCount):
                 self.fontKerningTable.append(data.readKERNINGRECORD(self.wideCodes))
 
+
 class TagFileAttributes(Tag):
     """
     The FileAttributes tag defines characteristics of the SWF file. This tag
@@ -1516,6 +1626,7 @@ class TagFileAttributes(Tag):
     access for locally loaded SWF files that are running in Flash Player 8 or later.
     """
     TYPE = 69
+
     def __init__(self):
         super(TagFileAttributes, self).__init__()
 
@@ -1553,8 +1664,10 @@ class TagFileAttributes(Tag):
             "useNetwork: %d" % self.useNetwork
         return s
 
+
 class TagPlaceObject3(TagPlaceObject2):
     TYPE = 70
+
     def __init__(self):
         super(TagPlaceObject3, self).__init__()
 
@@ -1568,7 +1681,7 @@ class TagPlaceObject3(TagPlaceObject2):
         self.hasMatrix = ((flags & 0x04) != 0)
         self.hasCharacter = ((flags & 0x02) != 0)
         self.hasMove = ((flags & 0x01) != 0)
-        flags2 = data.readUI8();
+        flags2 = data.readUI8()
         self.hasImage = ((flags2 & 0x10) != 0)
         self.hasClassName = ((flags2 & 0x08) != 0)
         self.hasCacheAsBitmap = ((flags2 & 0x04) != 0)
@@ -1589,7 +1702,7 @@ class TagPlaceObject3(TagPlaceObject2):
         if self.hasName:
             self.instanceName = data.readString()
         if self.hasClipDepth:
-            self.clipDepth = data.readUI16();
+            self.clipDepth = data.readUI16()
         if self.hasFilterList:
             numberOfFilters = data.readUI8()
             for i in range(0, numberOfFilters):
@@ -1610,8 +1723,10 @@ class TagPlaceObject3(TagPlaceObject2):
     def type(self):
         return TagPlaceObject3.TYPE
 
+
 class TagDefineFontAlignZones(Tag):
     TYPE = 73
+
     def __init__(self):
         super(TagDefineFontAlignZones, self).__init__()
 
@@ -1637,12 +1752,14 @@ class TagDefineFontAlignZones(Tag):
         self.fontId = data.readUI16()
         self.csmTableHint = (data.readUI8() >> 6)
 
-        recordsEndPos = data.tell() + length - 3;
+        recordsEndPos = data.tell() + length - 3
         while data.tell() < recordsEndPos:
             self.zoneTable.append(data.readZONERECORD())
 
+
 class TagCSMTextSettings(Tag):
     TYPE = 74
+
     def __init__(self):
         super(TagCSMTextSettings, self).__init__()
 
@@ -1665,14 +1782,16 @@ class TagCSMTextSettings(Tag):
     def parse(self, data, length, version=1):
         self.textId = data.readUI16()
         self.useFlashType = data.readUB(2)
-        self.gridFit = data.readUB(3);
-        data.readUB(3) # reserved, always 0
+        self.gridFit = data.readUB(3)
+        data.readUB(3)  # reserved, always 0
         self.thickness = data.readFIXED()
         self.sharpness = data.readFIXED()
-        data.readUI8() # reserved, always 0
+        data.readUI8()  # reserved, always 0
+
 
 class TagDefineFont3(TagDefineFont2):
     TYPE = 75
+
     def __init__(self):
         super(TagDefineFont3, self).__init__()
 
@@ -1692,8 +1811,10 @@ class TagDefineFont3(TagDefineFont2):
     def version(self):
         return 8
 
+
 class TagSymbolClass(Tag):
     TYPE = 76
+
     def __init__(self):
         self.symbols = []
         super(TagSymbolClass, self).__init__()
@@ -1712,7 +1833,7 @@ class TagSymbolClass(Tag):
 
     @property
     def version(self):
-        return 9 # educated guess (not specified in SWF10 spec)
+        return 9  # educated guess (not specified in SWF10 spec)
 
     def parse(self, data, length, version=1):
         self.symbols = []
@@ -1720,8 +1841,10 @@ class TagSymbolClass(Tag):
         for i in range(0, numSymbols):
             self.symbols.append(data.readSYMBOL())
 
+
 class TagMetadata(Tag):
     TYPE = 77
+
     def __init__(self):
         super(TagMetadata, self).__init__()
 
@@ -1749,8 +1872,10 @@ class TagMetadata(Tag):
         s += " xml: %r" % self.xmlString
         return s
 
+
 class TagDoABC(Tag):
     TYPE = 82
+
     def __init__(self):
         super(TagDoABC, self).__init__()
 
@@ -1777,8 +1902,10 @@ class TagDoABC(Tag):
         self.abcName = data.readString()
         self.bytes = data.f.read(length - (data.tell() - pos))
 
+
 class TagDefineShape4(TagDefineShape3):
     TYPE = 83
+
     def __init__(self):
         super(TagDefineShape4, self).__init__()
 
@@ -1808,8 +1935,10 @@ class TagDefineShape4(TagDefineShape3):
         self.uses_scaling_strokes = ((flags & 0x01) != 0)
         self._shapes = data.readSHAPEWITHSTYLE(self.level)
 
+
 class TagDefineSceneAndFrameLabelData(Tag):
     TYPE = 86
+
     def __init__(self):
         self.scenes = []
         self.frameLabels = []
@@ -1835,7 +1964,7 @@ class TagDefineSceneAndFrameLabelData(Tag):
         self.sceneCount = data.readEncodedU32()
 
         if self.sceneCount >= 0x80000000:
-            #print "WARNING: Negative sceneCount value: %x found!. SWF file exploiting CVE-2007-0071?" % self.sceneCount
+            # print "WARNING: Negative sceneCount value: %x found!. SWF file exploiting CVE-2007-0071?" % self.sceneCount
             return
 
         self.scenes = []
@@ -1847,15 +1976,17 @@ class TagDefineSceneAndFrameLabelData(Tag):
 
         frameLabelCount = data.readEncodedU32()
         for i in range(0, frameLabelCount):
-            frameNumber = data.readEncodedU32();
-            frameLabel = data.readString();
+            frameNumber = data.readEncodedU32()
+            frameLabel = data.readString()
             self.frameLabels.append(SWFFrameLabel(frameNumber, frameLabel))
+
 
 class TagDefineBinaryData(DefinitionTag):
     """
-	The DefineBinaryData tag permits arbitrary binary data to be embedded in a SWF file. DefineBinaryData is a definition tag, like DefineShape and DefineSprite. It associates a blob of binary data with a standard SWF 16-bit character ID. The character ID is entered into the SWF file's character dictionary. DefineBinaryData is intended to be used in conjunction with the SymbolClass tag. The SymbolClass tag can be used to associate a DefineBinaryData tag with an AS3 class definition. The AS3 class must be a subclass of ByteArray. When the class is instantiated, it will be populated automatically with the contents of the binary data resource.
+        The DefineBinaryData tag permits arbitrary binary data to be embedded in a SWF file. DefineBinaryData is a definition tag, like DefineShape and DefineSprite. It associates a blob of binary data with a standard SWF 16-bit character ID. The character ID is entered into the SWF file's character dictionary. DefineBinaryData is intended to be used in conjunction with the SymbolClass tag. The SymbolClass tag can be used to associate a DefineBinaryData tag with an AS3 class definition. The AS3 class must be a subclass of ByteArray. When the class is instantiated, it will be populated automatically with the contents of the binary data resource.
     """
     TYPE = 87
+
     def __init__(self):
         super(TagDefineBinaryData, self).__init__()
 
@@ -1872,8 +2003,10 @@ class TagDefineBinaryData(DefinitionTag):
         self.reserved = data.readUI32()
         self.data = data.read(length - 6)
 
+
 class TagDefineFontName(Tag):
     TYPE = 88
+
     def __init__(self):
         super(TagDefineFontName, self).__init__()
 
@@ -1903,8 +2036,10 @@ class TagDefineFontName(Tag):
         self.fontName = data.readString()
         self.fontCopyright = data.readString()
 
+
 class TagDefineSound(Tag):
     TYPE = 14
+
     def __init__(self):
         super(TagDefineSound, self).__init__()
 
@@ -1943,8 +2078,10 @@ class TagDefineSound(Tag):
         s += " soundChannels: %s" % AudioChannels.tostring(self.soundChannels)
         return s
 
+
 class TagStartSound(Tag):
     TYPE = 15
+
     def __init__(self):
         super(TagStartSound, self).__init__()
 
@@ -1968,8 +2105,10 @@ class TagStartSound(Tag):
         self.soundId = data.readUI16()
         self.soundInfo = data.readSOUNDINFO()
 
+
 class TagStartSound2(Tag):
     TYPE = 89
+
     def __init__(self):
         super(TagStartSound2, self).__init__()
 
@@ -1993,8 +2132,10 @@ class TagStartSound2(Tag):
         self.soundClassName = data.readString()
         self.soundInfo = data.readSOUNDINFO()
 
+
 class TagSoundStreamHead(Tag):
     TYPE = 18
+
     def __init__(self):
         super(TagSoundStreamHead, self).__init__()
 
@@ -2029,8 +2170,6 @@ class TagSoundStreamHead(Tag):
 
         self.samples = data.readUI16()
         self.latencySeek = data.readSI16() if self.soundFormat == AudioCodec.MP3 else None
-        hdr = 6 if self.soundFormat == AudioCodec.MP3 else 4
-        assert hdr == length
 
     def __str__(self):
         s = super(TagSoundStreamHead, self).__str__()
@@ -2042,6 +2181,7 @@ class TagSoundStreamHead(Tag):
         s += " soundSampleSize: %s" % AudioSampleSize.tostring(self.soundSampleSize)
         s += " soundChannels: %s" % AudioChannels.tostring(self.soundChannels)
         return s
+
 
 class TagSoundStreamHead2(TagSoundStreamHead):
     """
@@ -2060,6 +2200,7 @@ class TagSoundStreamHead2(TagSoundStreamHead):
     @property
     def type(self):
         return TagSoundStreamHead2.TYPE
+
 
 class TagSoundStreamBlock(Tag):
     """
@@ -2088,11 +2229,12 @@ class TagSoundStreamBlock(Tag):
         stream = SWFStream(self.data)
         if head.soundFormat in (AudioCodec.UncompressedNativeEndian,
                                 AudioCodec.UncompressedLittleEndian):
-            pass # data is enough
+            pass  # data is enough
         elif head.soundFormat == AudioCodec.MP3:
             self.sampleCount = stream.readUI16()
             self.seekSize = stream.readSI16()
             self.mpegFrames = stream.read()
+
 
 class TagDefineBinaryData(DefinitionTag):
     """
@@ -2119,6 +2261,7 @@ class TagDefineBinaryData(DefinitionTag):
         self.characterId = data.readUI16()
         self.reserved = data.readUI32()
         self.data = data.read(length - 4 - 2)
+
 
 class TagProductInfo(Tag):
     """
@@ -2149,8 +2292,10 @@ class TagProductInfo(Tag):
         s += " product: %s" % ProductKind.tostring(self.product)
         s += " edition: %s" % ProductEdition.tostring(self.edition)
         s += " major.minor.build: %d.%d.%d" % (self.majorVersion, self.minorVersion, self.build)
-        s += " compileTime: %d (%s)" % (self.compileTime, datetime.datetime.fromtimestamp(self.compileTime//1000.0).ctime())
+        s += " compileTime: %d (%s)" % (self.compileTime,
+                                        datetime.datetime.fromtimestamp(self.compileTime//1000.0).ctime())
         return s
+
 
 class TagScriptLimits(Tag):
     """
@@ -2181,6 +2326,7 @@ class TagScriptLimits(Tag):
         s += " scriptTimeoutSeconds: %s" % self.scriptTimeoutSeconds
         return s
 
+
 class TagDebugID(Tag):
     """
     Undocumented in SWF10.  Some kind of GUID.
@@ -2200,6 +2346,7 @@ class TagDebugID(Tag):
 
     def parse(self, data, length, version=1):
         self.guid = data.read(16)
+
 
 class TagExportAssets(Tag):
     """
@@ -2230,6 +2377,7 @@ class TagExportAssets(Tag):
         s = super(TagExportAssets, self).__str__()
         s += " exports: %s" % self.exports
         return s
+
 
 class TagProtect(Tag):
     """
@@ -2266,6 +2414,7 @@ class TagProtect(Tag):
         s += " password: %r" % self.password
         return s
 
+
 class TagEnableDebugger(Tag):
     """
     The EnableDebugger tag enables debugging. The password in the EnableDebugger tag is
@@ -2295,6 +2444,7 @@ class TagEnableDebugger(Tag):
         s = super(TagEnableDebugger, self).__str__()
         s += " password: %r" % self.password
         return s
+
 
 class TagEnableDebugger2(Tag):
     """
@@ -2327,6 +2477,7 @@ class TagEnableDebugger2(Tag):
         s += " password: %r" % self.password
         return s
 
+
 class TagDoInitAction(Tag):
     """
     The DoInitAction tag is similar to the DoAction tag: it defines a series of bytecodes to be
@@ -2358,6 +2509,7 @@ class TagDoInitAction(Tag):
     def parse(self, data, length, version=1):
         self.spriteId = data.readUI16()
         self.actions = data.readACTIONRECORDs()
+
 
 class TagDefineEditText(DefinitionTag):
     """
@@ -2428,6 +2580,7 @@ class TagDefineEditText(DefinitionTag):
         self.variableName = data.readString()
         self.initialText = data.readString() if self.hasText else None
 
+
 class TagDefineButton(DefinitionTag):
     """
     The DefineButton tag defines a button character for later use by control tags such as
@@ -2454,8 +2607,9 @@ class TagDefineButton(DefinitionTag):
 
     def parse(self, data, length, version=1):
         self.characterId = data.readUI16()
-        self.buttonCharacters = data.readBUTTONRECORDs(version = 1)
+        self.buttonCharacters = data.readBUTTONRECORDs(version=1)
         self.buttonActions = data.readACTIONRECORDs()
+
 
 class TagDefineButton2(DefinitionTag):
     """
@@ -2487,12 +2641,13 @@ class TagDefineButton2(DefinitionTag):
         self.trackAsMenu = data.readUB(1) == 1
         offs = data.tell()
         self.actionOffset = data.readUI16()
-        self.buttonCharacters = data.readBUTTONRECORDs(version = 2)
+        self.buttonCharacters = data.readBUTTONRECORDs(version=2)
 
         if self.actionOffset:
             # if we have actions, seek to the first one
             data.seek(offs + self.actionOffset)
             self.buttonActions = data.readBUTTONCONDACTIONSs()
+
 
 class TagDefineButtonSound(Tag):
     """
@@ -2524,6 +2679,7 @@ class TagDefineButtonSound(Tag):
             soundInfo = data.readSOUNDINFO() if soundId else None
             setattr(self, 'soundInfoOn' + event, soundInfo)
 
+
 class TagDefineScalingGrid(Tag):
     """
     The DefineScalingGrid tag introduces the concept of 9-slice scaling, which allows
@@ -2545,6 +2701,7 @@ class TagDefineScalingGrid(Tag):
     def parse(self, data, length, version=1):
         self.characterId = data.readUI16()
         self.splitter = data.readRECT()
+
 
 class TagDefineVideoStream(DefinitionTag):
     """
@@ -2573,6 +2730,7 @@ class TagDefineVideoStream(DefinitionTag):
         self.videoSmoothing = data.readUB(1)
         self.codec = data.readUI8()
 
+
 class TagVideoFrame(Tag):
     """
     VideoFrame provides a single frame of video data for a video character that is already defined
@@ -2595,6 +2753,7 @@ class TagVideoFrame(Tag):
         self.streamId = data.readUI16()
         self.frameNumber = data.readUI16()
         self.videoData = data.read(length - 4)
+
 
 class TagDefineMorphShape2(TagDefineMorphShape):
     """
@@ -2639,10 +2798,11 @@ class TagDefineMorphShape2(TagDefineMorphShape):
 
         offset = data.readUI32()
         self._morphFillStyles = data.readMORPHFILLSTYLEARRAY()
-        self._morphLineStyles = data.readMORPHLINESTYLEARRAY(version = 2)
+        self._morphLineStyles = data.readMORPHLINESTYLEARRAY(version=2)
 
-        self.startEdges = data.readSHAPE();
-        self.endEdges = data.readSHAPE();
+        self.startEdges = data.readSHAPE()
+        self.endEdges = data.readSHAPE()
+
 
 if __name__ == '__main__':
     # some table checks
@@ -2655,5 +2815,5 @@ if __name__ == '__main__':
         if k.startswith('Tag') and hasattr(v, 'TYPE'):
             y = TagFactory.create(v.TYPE)
             if y == None:
-                #print v.__name__, 'missing', 'for', v.TYPE
+                # print v.__name__, 'missing', 'for', v.TYPE
                 pass
