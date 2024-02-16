@@ -16,6 +16,7 @@ disable_cache: false
 enabled: true
 is_external: false
 licence_count: 0
+privilged: true
 
 config:
   RABCDASM: '/opt/al_support/swiffer/rabcdasm/rabcdasm'
@@ -54,4 +55,4 @@ heuristics:
 docker_config:
   image: ${REGISTRY}cccs/assemblyline-service-swiffer:$SERVICE_TAG
   cpu_cores: 1
-  ram_mb: 256
+  ram_mb: 2048
