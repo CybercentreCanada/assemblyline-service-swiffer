@@ -1,0 +1,160 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 0,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "Version: 13\nFile length: 3632\nFrame size: [xmin: 0 xmax: 500 ymin: 0 ymax: 375]\nFrame rate: 24\nFrame count: 1",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "swf": {
+              "header": {
+                "frame": {
+                  "count": [
+                    "1"
+                  ],
+                  "rate": [
+                    "24.0"
+                  ],
+                  "size": [
+                    "[xmin: 0 xmax: 500 ymin: 0 ymax: 375]"
+                  ]
+                },
+                "version": [
+                  "13"
+                ]
+              }
+            }
+          }
+        },
+        "title_text": "SWF Header",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": null,
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "swf": {
+              "tags_ssdeep": [
+                "3:cVymyCV:cVXyCV"
+              ]
+            }
+          }
+        },
+        "title_text": "SWF Tags",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "Main: _6cfeede5026c34903238123cc66109c4703d668be5bf90a3ca858904fea8c586_flash_display_Sprite",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Symbol Summary",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": null,
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Tags of Interest",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "Name: _6cfeede5026c34903238123cc66109c4703d668be5bf90a3ca858904fea8c586_flash_display_Sprite\tLength: 1095\nName: com/hhsj/diwei/DiWeiSheBaoClass\tLength: 1706",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 1,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "DoABC",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "Product: Adobe Flex\tEdition: None\tVersion (Major.Minor.Build): 4.16.20171115\tCompile Time: Fri Jun 18 06:53:09 2021",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 1,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {},
+        "title_text": "ProductInfo",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [],
+    "tags": {
+      "file.swf.header.frame.count": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "1"
+        }
+      ],
+      "file.swf.header.frame.rate": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "24.0"
+        }
+      ],
+      "file.swf.header.frame.size": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "[xmin: 0 xmax: 500 ymin: 0 ymax: 375]"
+        }
+      ],
+      "file.swf.header.version": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "13"
+        }
+      ],
+      "file.swf.tags_ssdeep": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "3:cVymyCV:cVXyCV"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}
