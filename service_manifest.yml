@@ -1,25 +1,28 @@
 name: Swiffer
 version: $SERVICE_TAG
-description: >-
-  This service extracts metadata and performs anomaly detection on SWF files.
+description: This Assemblyline service uses the Python pyswf library to extract metadata and perform anomaly detection on 'audiovisual/flash' files.
 
 accepts: audiovisual/flash|archive/audiovisual/flash
 rejects: empty|metadata/.*
 
+# At which stage the service should run (one of FILTER, EXTRACT, CORE, SECONDARY, POST, REVIEW)
+# NOTE: Stages are executed in the order defined in the list
 stage: EXTRACT
+# Which category the service is part of (one of Antivirus, Dynamic Analysis, External, Extraction, Filtering, Internet Connected, Networking, Static Analysis)
 category: Static Analysis
 
+# Does the service require access to the file to perform its task
+# If set to false, the service will only have access to the file metadata (e.g. Hashes, size, type, ...)
 file_required: true
+# Maximum execution time the service has before it's considered to be timed out
 timeout: 60
 disable_cache: false
 
+# is the service enabled by default
 enabled: true
 is_external: false
 licence_count: 0
 privileged: true
-
-config:
-  RABCDASM: '/opt/al_support/swiffer/rabcdasm/rabcdasm'
 
 heuristics:
   - description: Checks for printable character buffers larger than 512 bytes

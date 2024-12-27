@@ -1,0 +1,6 @@
+assemblyline
+assemblyline-v4-service
+lxml>=3.3.0
+Pillow>=2.3.0
+pylzma>=0.4.6
+six

@@ -13,7 +13,7 @@
             "args": [
                 "-d",
                 "swiffer.swiffer.Swiffer",
-                "{file}"
+                "${file}"
             ],
             "justMyCode": false,
         },
