@@ -1,0 +1,134 @@
+{
+  "extra": {
+    "drop_file": false,
+    "score": 10,
+    "sections": [
+      {
+        "auto_collapse": false,
+        "body": "Version: 6\nFile length: 1040\nFrame size: [xmin: 0 xmax: 100 ymin: 0 ymax: 100]\nFrame rate: 12\nFrame count: 1",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "swf": {
+              "header": {
+                "frame": {
+                  "count": [
+                    "1"
+                  ],
+                  "rate": [
+                    "12.0"
+                  ],
+                  "size": [
+                    "[xmin: 0 xmax: 100 ymin: 0 ymax: 100]"
+                  ]
+                },
+                "version": [
+                  "6"
+                ]
+              }
+            }
+          }
+        },
+        "title_text": "SWF Header",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": null,
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": null,
+        "promote_to": null,
+        "tags": {
+          "file": {
+            "swf": {
+              "tags_ssdeep": [
+                "3:4pZbmV4tJQV:4ltJQV"
+              ]
+            }
+          }
+        },
+        "title_text": "SWF Tags",
+        "zeroize_on_tag_safe": false
+      },
+      {
+        "auto_collapse": false,
+        "body": "This SWF doesn't specify information about the product that created it.",
+        "body_config": {},
+        "body_format": "TEXT",
+        "classification": "TLP:C",
+        "depth": 0,
+        "heuristic": {
+          "attack_ids": [],
+          "frequency": 1,
+          "heur_id": 5,
+          "score": 10,
+          "score_map": {},
+          "signatures": {}
+        },
+        "promote_to": null,
+        "tags": {},
+        "title_text": "Missing Product Information",
+        "zeroize_on_tag_safe": false
+      }
+    ]
+  },
+  "files": {
+    "extracted": [],
+    "supplementary": []
+  },
+  "results": {
+    "heuristics": [
+      {
+        "attack_ids": [],
+        "heur_id": 5,
+        "signatures": []
+      }
+    ],
+    "tags": {
+      "file.swf.header.frame.count": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "1"
+        }
+      ],
+      "file.swf.header.frame.rate": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "12.0"
+        }
+      ],
+      "file.swf.header.frame.size": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "[xmin: 0 xmax: 100 ymin: 0 ymax: 100]"
+        }
+      ],
+      "file.swf.header.version": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "6"
+        }
+      ],
+      "file.swf.tags_ssdeep": [
+        {
+          "heur_id": null,
+          "signatures": [],
+          "value": "3:4pZbmV4tJQV:4ltJQV"
+        }
+      ]
+    },
+    "temp_submission_data": {}
+  }
+}

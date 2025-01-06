@@ -42,7 +42,7 @@ class Swiffer(ServiceBase):
         self.binary_data = None
         self.exported_assets = None
         self.big_buffers = None
-        self.rabcdasm = self.config.get('RABCDASM')
+        self.rabcdasm = os.path.realpath('./remnux-rabcdasm/rabcdasm')
         self.has_product_info = False
         self.anti_decompilation = False
         self.recent_compile = False
