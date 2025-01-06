@@ -1,6 +1,6 @@
 {
   "template": "https://github.com/CybercentreCanada/assemblyline-service-template.git",
-  "commit": "6d2fcb683f00eeda843cf2c40981e266679a97dc",
+  "commit": "99becf8ed2990a4063a5bb1f8ce878824a5a1a7b",
   "checkout": null,
   "context": {
     "cookiecutter": {
@@ -8,15 +8,15 @@
       "__svc_name": "swiffer",
       "__repository": "assemblyline-service-swiffer",
       "__pkg_name": "swiffer",
+      "class_name": "Swiffer",
       "short_description": "This Assemblyline service uses the Python pyswf library to extract metadata and perform anomaly detection on 'audiovisual/flash' files.",
-      "short_description_fr": "Ce service Assemblyline utilise la biblioth\u00e8que Python pyswf pour extraire des m\u00e9tadonn\u00e9es et d\u00e9tecter des anomalies dans les fichiers 'audiovisuels/flash'.",
+      "short_description_fr": "Ce service Assemblyline utilise la bibliothèque Python pyswf pour extraire des métadonnées et détecter des anomalies dans les fichiers 'audiovisuels/flash'.",
       "stage": "EXTRACT",
       "category": "Static Analysis",
       "org_name_full": "CybercentreCanada",
       "org_name_short": "cccs",
       "license": "mit",
-      "_template": "https://github.com/CybercentreCanada/assemblyline-service-template.git",
-      "class_name": "Swiffer"
+      "_template": "https://github.com/CybercentreCanada/assemblyline-service-template.git"
     }
   },
   "directory": null
