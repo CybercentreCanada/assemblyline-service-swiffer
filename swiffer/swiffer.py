@@ -5,9 +5,9 @@ from collections import defaultdict
 from datetime import datetime, timedelta
 from subprocess import PIPE, Popen
 
-import ssdeep
 from assemblyline_v4_service.common.base import ServiceBase
 from assemblyline_v4_service.common.result import Heuristic, Result, ResultSection
+from assemblyline_toolbox import SsdeepHasher
 
 from .swf.consts import ProductEdition, ProductKind
 from .swf.movie import SWF, SWFHeaderException
@@ -106,7 +106,11 @@ class Swiffer(ServiceBase):
             self.tag_analyzers.get(SWF_TAGS.get(tag.type), self._dummy)(tag)
             tag_types.append(str(tag.type))
         tag_list = ','.join(tag_types)
-        tags_ssdeep = ssdeep.hash(tag_list)
+
+        ssdeep = SsdeepHasher()
+        ssdeep.update(bytes(tag_list, "utf-8"))
+        tags_ssdeep = ssdeep.digest()
+
         tag_subsection.add_tag(tag_type="file.swf.tags_ssdeep", value=tags_ssdeep)
         # TODO: not sure we want to split those...
         # _, hash_one, hash_two = tags_ssdeep.split(':')
